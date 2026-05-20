@@ -1,13 +1,13 @@
 {
-  "name": "ufc-cal",
+  "name": "glory-kb-cal",
   "version": "1.0.0",
-  "description": "",
+  "description": "GLORY Kickboxing calendar feed",
   "main": "src/index.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "npx tsx src/index.ts"
   },
-  "author": "Clarence Chan",
+  "author": "",
   "license": "ISC",
   "devDependencies": {
     "@types/node": "^22.12.0",

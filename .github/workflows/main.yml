@@ -9,18 +9,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository code
-        # https://github.com/actions/checkout/tree/v3.0.2
         uses: actions/checkout@v4
         with:
           ref: ics
-      - name: Create UFC.ics
+      - name: Create GLORY.ics
         run: |
           npm install
           npm start
       - name: Push to repository
         run: |
-          git config --global user.name "Clarence Chan"
-          git config --global user.email "clarencechaan@icloud.com"
-          git add UFC.ics UFC-PPV.ics
-          git commit -m "Update UFC.ics and UFC-PPV.ics"
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add GLORY.ics
+          git diff --cached --quiet || git commit -m "Update GLORY.ics"
           git push -u origin ics

@@ -1,214 +1,131 @@
-import { parse, HTMLElement } from "node-html-parser";
+import { parse } from "node-html-parser";
 import { decode } from "html-entities";
 
+const BASE_URL = "https://glorykickboxing.com";
+const EVENTS_PAGE_URL = new URL(`${BASE_URL}/en/events`);
+
 /**
- * Returns an array of URLs of recent and upcoming UFC events
+ * Attempts to extract the embedded __NEXT_DATA__ JSON from a Next.js page.
  */
-async function getEventURLs() {
-  // Get first two pages of event urls
-  const pageURLs = [
-    new URL("https://www.ufc.com/events?page=0"),
-    new URL("https://www.ufc.com/events?page=1"),
-  ];
-
+function extractNextData(html: string): Record<string, unknown> | null {
+  const root = parse(html);
+  const el = root.querySelector("#__NEXT_DATA__");
+  if (!el?.textContent) return null;
   try {
-    const eventURLs = (
-      await Promise.all(pageURLs.map(getEventURLsFromPageURL))
-    ).flat();
+    return JSON.parse(el.textContent) as Record<string, unknown>;
+  } catch {
+    return null;
+  }
+}
 
-    console.log("\nEvent URLs found:");
-    console.log(eventURLs.map((url) => url.href));
-    return eventURLs;
+/**
+ * Returns an array of upcoming GLORY event URLs scraped from the events
+ * listing page.
+ */
+async function getEventURLs(): Promise<URL[]> {
+  try {
+    const response = await fetch(EVENTS_PAGE_URL);
+    const text = await response.text();
+
+    // Try __NEXT_DATA__ first (Next.js SSR)
+    const nextData = extractNextData(text);
+    if (nextData) {
+      const urls = extractEventURLsFromNextData(nextData);
+      if (urls.length) {
+        console.log("\nEvent URLs found (via __NEXT_DATA__):");
+        console.log(urls.map((u) => u.href));
+        return urls;
+      }
+    }
+
+    // Fall back to HTML link extraction
+    const root = parse(text);
+    const anchors = root.querySelectorAll("a[href]");
+    const urls = anchors
+      .map((a) => {
+        const href = a.getAttribute("href") ?? "";
+        // Match paths like /en/events/glory-100 or /events/glory-100
+        if (/^\/(en\/)?events\/[a-z0-9-]+$/.test(href)) {
+          return new URL(`${BASE_URL}${href}`);
+        }
+        return null;
+      })
+      .filter((u): u is URL => u !== null);
+
+    // Deduplicate
+    const seen = new Set<string>();
+    const unique = urls.filter((u) => {
+      if (seen.has(u.href)) return false;
+      seen.add(u.href);
+      return true;
+    });
+
+    console.log("\nEvent URLs found (via HTML):");
+    console.log(unique.map((u) => u.href));
+    return unique;
   } catch (error) {
     console.error(error);
     throw new Error("Failed to retrieve event URLs");
   }
 }
 
-async function getEventURLsFromPageURL(url: URL) {
-  try {
-    const response = await fetch(url);
-    const text = await response.text();
-    const root = parse(text);
+/**
+ * Attempts to pull event slugs / URLs out of a __NEXT_DATA__ blob.
+ */
+function extractEventURLsFromNextData(data: Record<string, unknown>): URL[] {
+  // Try several candidate paths for the events list
+  const pageProps = (
+    (data?.props as Record<string, unknown>)?.pageProps as Record<
+      string,
+      unknown
+    >
+  );
+  if (!pageProps) return [];
 
-    // Extract the URLs of the relevant events from the HTML element
-    const eventURLElements = root.querySelectorAll(
-      ".c-card-event--result__headline"
-    );
-    const eventURLs = eventURLElements.map(
-      (html) =>
-        new URL(
-          `https://www.ufc.com${(html.firstChild as HTMLElement).getAttribute(
-            "href"
-          )}`
-        )
-    );
+  // Try common key names
+  const candidates = [
+    pageProps?.upcomingEvents,
+    pageProps?.events,
+    (pageProps?.data as Record<string, unknown>)?.upcomingEvents,
+    (pageProps?.data as Record<string, unknown>)?.events,
+  ];
 
-    return eventURLs;
-  } catch (error) {
-    console.error(error);
-    throw new Error("Failed to retrieve event URLs from page URL");
+  for (const candidate of candidates) {
+    if (Array.isArray(candidate) && candidate.length) {
+      const urls: URL[] = [];
+      for (const ev of candidate) {
+        const slug =
+          (ev as Record<string, unknown>)?.slug ??
+          (ev as Record<string, unknown>)?.id;
+        if (slug) {
+          urls.push(new URL(`${BASE_URL}/en/events/${slug}`));
+        }
+      }
+      if (urls.length) return urls;
+    }
   }
+
+  return [];
 }
 
 /**
- * Returns the output string of a fight given its HTML element list item
+ * Returns the fight card details of a GLORY event given its URL.
  */
-function convertLiToStr(li: HTMLElement) {
-  const bout = li.querySelector(".c-listing-fight__class-text")?.textContent;
-
-  let fightStr = "";
-
-  // Return only fight names without bout weightclass if formatting for
-  // an event is broken on the UFC event page
-  if (!bout) {
-    const textContent = li
-      .querySelector(".field--name-node-title")
-      ?.textContent?.trim()
-      .replace(" vs ", " vs. ");
-    if (!textContent) return "";
-    fightStr += `• ${textContent}`;
-    return fightStr;
-  }
-
-  let weightClass = "";
-
-  // Get weightclass in short form
-  if (bout.includes("Strawweight")) weightClass = "115";
-  else if (bout.includes("Flyweight")) weightClass = "125";
-  else if (bout.includes("Bantamweight")) weightClass = "135";
-  else if (bout.includes("Featherweight")) weightClass = "145";
-  else if (bout.includes("Lightweight")) weightClass = "155";
-  else if (bout.includes("Welterweight")) weightClass = "170";
-  else if (bout.includes("Middleweight")) weightClass = "185";
-  else if (bout.includes("Light Heavyweight")) weightClass = "205";
-  else if (bout.includes("Heavyweight")) weightClass = "265";
-  else if (bout.includes("Catchweight")) weightClass = "CW";
-
-  // Extract and format fighter names with weightclass
-  const red =
-    li
-      .querySelector(".c-listing-fight__corner-name--red")
-      ?.textContent?.replaceAll("\n", "")
-      .replace(/\s+/g, " ")
-      .trim() || "___";
-  const blue =
-    li
-      .querySelector(".c-listing-fight__corner-name--blue")
-      ?.textContent?.replaceAll("\n", "")
-      .replace(/\s+/g, " ")
-      .trim() || "___";
-
-  const ranks = li
-    .querySelectorAll(
-      ".js-listing-fight__corner-rank.c-listing-fight__corner-rank"
-    )
-    .map((rank) => rank?.textContent.trim());
-
-  const redRankStr = ranks[0] ? ` (${ranks[0]})` : "";
-  const blueRankStr = ranks[1] ? ` (${ranks[1]})` : "";
-  fightStr += `• ${red}${redRankStr} vs. ${blue}${blueRankStr} @${weightClass}`;
-
-  // Deentitize HTML entities
-  fightStr = decode(fightStr);
-
-  return fightStr;
-}
-
-/**
- * Returns the fight card details of a UFC event given its URL
- */
-async function getDetailsFromEventURL(url: URL) {
+async function getDetailsFromEventURL(url: URL): Promise<GloryEvent> {
+  console.log(`\nGetting details from url: ${url.href}`);
   try {
     const response = await fetch(url);
     const text = await response.text();
-    const root = parse(text);
 
-    // Extract basic details of the event from the HTML
-    const headlinePrefix = root
-      .querySelector(".c-hero__headline-prefix")
-      ?.innerText.trim();
-    const headline = root
-      .querySelector(".c-hero__headline")
-      ?.innerText.replace(/\s\s+/g, " ")
-      .trim();
-    const date = root
-      .querySelector(".c-hero__headline-suffix")
-      ?.getAttribute("data-timestamp");
-
-    const prelimsTime = root
-      .querySelector("#prelims-card .c-event-fight-card-broadcaster__time")
-      ?.getAttribute("data-timestamp");
-    const earlyPrelimsTime = root
-      .querySelector("#early-prelims .c-event-fight-card-broadcaster__time")
-      ?.getAttribute("data-timestamp");
-
-    let name = `${headlinePrefix}: ${headline}`;
-    let location =
-      root
-        .querySelector(".field--name-venue")
-        ?.innerText.replaceAll(",", "")
-        .split("\n")
-        .filter((str) => str)
-        .map((str) => str.trim())
-        .join(", ") || "";
-    let fightCard: string[] = [];
-    let mainCard: string[] = [];
-    let prelims: string[] = [];
-    let earlyPrelims: string[] = [];
-
-    console.log(`\nGetting details from url: ${url.href}`);
-
-    const mainCardElements = root.querySelectorAll(
-      "#main-card .l-listing__item"
-    );
-    // Check if main card and prelims have been announced
-    if (mainCardElements.length) {
-      // Main card has been announced, extract prelims
-      const prelimsElements = root.querySelectorAll(
-        "#prelims-card .l-listing__item"
-      );
-      const earlyPrelimsElements = root.querySelectorAll(
-        "#early-prelims .l-listing__item"
-      );
-
-      mainCard = mainCardElements.map(convertLiToStr);
-      prelims = prelimsElements.map(convertLiToStr);
-      earlyPrelims = earlyPrelimsElements.map(convertLiToStr);
-
-      console.log(`Main card length: ${mainCard.length}`);
-      console.log(`Prelims length: ${prelims.length}`);
-    } else {
-      // Main card has not been announced, extract entire fight card
-      const fightCardElements = root.querySelectorAll(
-        ".l-listing__group--bordered .l-listing__item"
-      );
-
-      fightCard = fightCardElements.map(convertLiToStr);
-
-      console.log(`Fight card length: ${fightCard.length}`);
+    // Try __NEXT_DATA__ first
+    const nextData = extractNextData(text);
+    if (nextData) {
+      const event = extractEventFromNextData(nextData, url);
+      if (event) return event;
     }
 
-    // Deentitize HTML entities
-    [name, location] = [decode(name), decode(location)];
-
-    if (!name || !date) {
-      throw new Error("Failed to retrieve event details");
-    }
-
-    const details: UFCEvent = {
-      name,
-      url,
-      date,
-      location,
-      fightCard,
-      mainCard,
-      prelims,
-      earlyPrelims,
-      prelimsTime,
-      earlyPrelimsTime,
-    };
-    return details;
+    // Fall back to HTML parsing
+    return extractEventFromHTML(text, url);
   } catch (error) {
     console.error(error);
     throw new Error(`Failed to retrieve event: ${url.href}\n${error}`);
@@ -216,15 +133,193 @@ async function getDetailsFromEventURL(url: URL) {
 }
 
 /**
- * Returns an array of details of recent and upcoming UFC events
+ * Extracts event details from a __NEXT_DATA__ JSON blob on an event detail
+ * page.
  */
-async function getAllDetailedEvents() {
+function extractEventFromNextData(
+  data: Record<string, unknown>,
+  url: URL
+): GloryEvent | null {
+  const pageProps = (
+    (data?.props as Record<string, unknown>)?.pageProps as Record<
+      string,
+      unknown
+    >
+  );
+  if (!pageProps) return null;
+
+  // Try common key names for the event object
+  const raw =
+    pageProps?.event ??
+    pageProps?.data ??
+    (pageProps?.data as Record<string, unknown>)?.event ??
+    pageProps;
+
+  if (!raw || typeof raw !== "object") return null;
+  const ev = raw as Record<string, unknown>;
+
+  // Name
+  const name = decode(
+    String(ev?.name ?? ev?.title ?? ev?.eventName ?? "")
+  ).trim();
+  if (!name) return null;
+
+  // Date — accept ISO string, unix timestamp string, or number
+  const rawDate = ev?.date ?? ev?.startDate ?? ev?.startTime ?? ev?.datetime;
+  let date = "";
+  if (typeof rawDate === "number") {
+    date = String(rawDate);
+  } else if (typeof rawDate === "string") {
+    // If it looks like an ISO date, convert to unix timestamp
+    const parsed = Date.parse(rawDate);
+    if (!isNaN(parsed)) {
+      date = String(Math.floor(parsed / 1000));
+    } else {
+      date = rawDate;
+    }
+  }
+  if (!date) return null;
+
+  // Location
+  const venue = ev?.venue as Record<string, unknown> | undefined;
+  const locationParts = [
+    venue?.name ?? ev?.venueName,
+    venue?.city ?? ev?.city,
+    venue?.country ?? ev?.country,
+  ]
+    .filter(Boolean)
+    .map((s) => decode(String(s)).trim());
+  const location = locationParts.join(", ");
+
+  // Fights
+  const fights = extractFightsFromNextDataEvent(ev);
+
+  return { name, url, date, location, fights };
+}
+
+/**
+ * Tries several common shapes for fight card data inside an event JSON object.
+ */
+function extractFightsFromNextDataEvent(
+  ev: Record<string, unknown>
+): string[] {
+  const candidates = [
+    ev?.fightCard,
+    ev?.fights,
+    ev?.bouts,
+    (ev?.data as Record<string, unknown>)?.fights,
+  ];
+
+  for (const candidate of candidates) {
+    if (!Array.isArray(candidate) || !candidate.length) continue;
+    const lines: string[] = [];
+    for (const fight of candidate) {
+      const f = fight as Record<string, unknown>;
+      const fighter1 =
+        String(
+          (f?.fighter1 as Record<string, unknown>)?.name ??
+            (f?.redCorner as Record<string, unknown>)?.name ??
+            f?.fighter1Name ??
+            ""
+        ).trim() || "TBD";
+      const fighter2 =
+        String(
+          (f?.fighter2 as Record<string, unknown>)?.name ??
+            (f?.blueCorner as Record<string, unknown>)?.name ??
+            f?.fighter2Name ??
+            ""
+        ).trim() || "TBD";
+      const weightClass = String(
+        f?.weightClass ?? f?.division ?? f?.weight ?? ""
+      ).trim();
+      const wcStr = weightClass ? ` @${weightClass}` : "";
+      lines.push(decode(`• ${fighter1} vs. ${fighter2}${wcStr}`));
+    }
+    if (lines.length) return lines;
+  }
+
+  return [];
+}
+
+/**
+ * Falls back to HTML parsing when __NEXT_DATA__ extraction fails.
+ */
+function extractEventFromHTML(html: string, url: URL): GloryEvent {
+  const root = parse(html);
+
+  // Name — try common heading selectors
+  const name = decode(
+    root.querySelector("h1")?.innerText?.replace(/\s+/g, " ").trim() ??
+      root.querySelector("title")?.textContent?.trim() ??
+      url.pathname.split("/").pop() ??
+      "Unknown Event"
+  );
+
+  // Date — look for time elements or data-timestamp attributes
+  const timeEl =
+    root.querySelector("time[datetime]") ??
+    root.querySelector("[data-timestamp]");
+  let date = "";
+  if (timeEl) {
+    const dt =
+      timeEl.getAttribute("datetime") ??
+      timeEl.getAttribute("data-timestamp") ??
+      "";
+    const parsed = Date.parse(dt);
+    if (!isNaN(parsed)) {
+      date = String(Math.floor(parsed / 1000));
+    } else {
+      date = dt;
+    }
+  }
+  if (!date) {
+    // Last resort: scrape page for ISO date patterns
+    const match = html.match(
+      /(\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?Z?)/
+    );
+    if (match?.[1]) {
+      const parsed = Date.parse(match[1]);
+      if (!isNaN(parsed)) date = String(Math.floor(parsed / 1000));
+    }
+  }
+
+  // Location
+  const locationEl =
+    root.querySelector("[class*='venue']") ??
+    root.querySelector("[class*='location']") ??
+    root.querySelector("[class*='arena']");
+  const location = decode(
+    locationEl?.innerText?.replace(/\s+/g, " ").trim() ?? ""
+  );
+
+  // Fights — look for fighter name elements
+  const fightEls = root.querySelectorAll(
+    "[class*='fight'], [class*='bout'], [class*='matchup']"
+  );
+  const fights: string[] = [];
+  for (const el of fightEls) {
+    const text = el.innerText?.replace(/\s+/g, " ").trim();
+    if (text) fights.push(decode(`• ${text}`));
+  }
+
+  if (!date) {
+    throw new Error(
+      `Failed to retrieve event details (no date) for: ${url.href}`
+    );
+  }
+
+  return { name, url, date, location, fights };
+}
+
+/**
+ * Returns an array of details of upcoming GLORY events.
+ */
+async function getAllDetailedEvents(): Promise<GloryEvent[]> {
   try {
     const eventURLs = await getEventURLs();
 
-    // Get UFC events from URLs
     const detailedEvents = await Promise.all(
-      eventURLs?.map(getDetailsFromEventURL)
+      eventURLs.map(getDetailsFromEventURL)
     );
     return detailedEvents;
   } catch (error) {
@@ -234,3 +329,4 @@ async function getAllDetailedEvents() {
 }
 
 export { getAllDetailedEvents };
+

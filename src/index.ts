@@ -3,46 +3,31 @@ import * as fs from "fs";
 import { createEvents, type DateArray, type EventAttributes } from "ics";
 
 /**
- * Extracts the details of recent and upcoming UFC events, then creates an
- * ICS file named "UFC.ics" in the current directory containing these events
+ * Extracts the details of upcoming GLORY Kickboxing events, then creates an
+ * ICS file named "GLORY.ics" in the current directory containing these events.
  */
 async function createICS() {
   try {
     const events = await getAllDetailedEvents();
     if (!events?.length) throw new Error("No events retrieved");
 
-    // Convert event details in the format in accordance with the ICS generator
+    // Convert event details into the format required by the ICS generator
     const formattedEvents = events.map((event) =>
-      formatEventForCalendar(event, "UFC")
+      formatEventForCalendar(event)
     );
 
     console.log("\nDetailed events:");
     console.log(formattedEvents);
 
-    // Create UFC.ics
+    // Create GLORY.ics
     const eventsData = createEvents(formattedEvents).value;
-    if (eventsData) fs.writeFileSync("UFC.ics", eventsData);
-
-    // Filter for PPV events only
-    const ppvEvents = events.filter(
-      (event) => !event.name.includes("Fight Night")
-    );
-    const formattedPPVEvents = ppvEvents.map((event) =>
-      formatEventForCalendar(event, "UFC-PPV")
-    );
-
-    // Create UFC-PPV.ics
-    const ppvEventsData = createEvents(formattedPPVEvents).value;
-    if (ppvEventsData) fs.writeFileSync("UFC-PPV.ics", ppvEventsData);
+    if (eventsData) fs.writeFileSync("GLORY.ics", eventsData);
   } catch (error) {
     console.error(error);
   }
 }
 
-function formatEventForCalendar(
-  event: UFCEvent,
-  calName = "UFC"
-): EventAttributes {
+function formatEventForCalendar(event: GloryEvent): EventAttributes {
   const date = new Date(parseInt(event.date) * 1000);
   const start: DateArray = [
     date.getFullYear(),
@@ -55,34 +40,11 @@ function formatEventForCalendar(
   const title = event.name;
   let description = "";
 
-  // Distinguish between main card and prelims if this information has been
-  // announced by the UFC, otherwise list all fights without categorizing
-  if (event.fightCard.length) description = `${event.fightCard.join("\n")}\n`;
-  if (event.mainCard.length)
-    description += `Main Card\n--------------------\n${event.mainCard.join(
-      "\n"
-    )}\n`;
-  if (event.prelims.length) {
-    description += "\nPrelims";
-    if (event.prelimsTime) {
-      const prelimsTime = new Date(parseInt(event.prelimsTime) * 1000);
-      const hoursAgo = (+date - +prelimsTime) / 1000 / 60 / 60;
-      if (hoursAgo > 0) description += ` (${hoursAgo} hrs before Main)`;
-    }
-    description += `\n--------------------\n${event.prelims.join("\n")}\n`;
+  // List all announced fights
+  if (event.fights.length) {
+    description += `${event.fights.join("\n")}\n\n`;
   }
-  if (event.earlyPrelims.length) {
-    description += "\nEarly Prelims";
-    if (event.earlyPrelimsTime) {
-      const earlyPrelimsTime = new Date(
-        parseInt(event.earlyPrelimsTime) * 1000
-      );
-      const hoursAgo = (+date - +earlyPrelimsTime) / 1000 / 60 / 60;
-      if (hoursAgo > 0) description += ` (${hoursAgo} hrs before Main)`;
-    }
-    description += `\n--------------------\n${event.earlyPrelims.join("\n")}\n`;
-  }
-  if (description.length) description += "\n";
+
   description += `${event.url}`;
 
   // Get current date and time to communicate to the user how up-to-date
@@ -92,7 +54,7 @@ function formatEventForCalendar(
     day: "numeric",
     hour: "numeric",
     minute: "numeric",
-    timeZone: "America/Toronto",
+    timeZone: "UTC",
     timeZoneName: "short",
   });
   description += `\n\nAccurate as of ${dateTimestr}`;
@@ -100,14 +62,14 @@ function formatEventForCalendar(
   const location = event.location;
   const uid = event.url.href;
 
-  const calendarEvent = {
+  const calendarEvent: EventAttributes = {
     start,
     duration,
     title,
     description,
     location,
     uid,
-    calName,
+    calName: "GLORY Kickboxing",
   };
 
   return calendarEvent;
