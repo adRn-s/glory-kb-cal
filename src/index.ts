@@ -7,23 +7,23 @@ import { createEvents, type DateArray, type EventAttributes } from "ics";
  * ICS file named "GLORY.ics" in the current directory containing these events.
  */
 async function createICS() {
-  try {
-    const events = await getAllDetailedEvents();
-    if (!events?.length) throw new Error("No events retrieved");
+  const events = await getAllDetailedEvents();
+  if (!events?.length) throw new Error("No events retrieved");
 
-    // Convert event details into the format required by the ICS generator
-    const formattedEvents = events.map((event) =>
-      formatEventForCalendar(event)
-    );
+  // Convert event details into the format required by the ICS generator
+  const formattedEvents = events.map((event) => formatEventForCalendar(event));
 
-    console.log("\nDetailed events:");
-    console.log(formattedEvents);
+  console.log("\nDetailed events:");
+  console.log(formattedEvents);
 
-    // Create GLORY.ics
-    const eventsData = createEvents(formattedEvents).value;
-    if (eventsData) fs.writeFileSync("GLORY.ics", eventsData);
-  } catch (error) {
-    console.error(error);
+  // Create GLORY.ics
+  const { error, value } = createEvents(formattedEvents);
+  if (error) throw error;
+  if (!value) throw new Error("Failed to generate GLORY.ics content");
+  fs.writeFileSync("GLORY.ics", value);
+
+  if (!fs.existsSync("GLORY.ics")) {
+    throw new Error("GLORY.ics was not produced");
   }
 }
 
@@ -75,4 +75,7 @@ function formatEventForCalendar(event: GloryEvent): EventAttributes {
   return calendarEvent;
 }
 
-createICS();
+createICS().catch((error) => {
+  console.error(error);
+  process.exitCode = 1;
+});
