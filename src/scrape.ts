@@ -159,9 +159,8 @@ function getFutureTimestampCandidates(text: string): number[] {
 
   const monthDayYear =
     /\b(?:jan(?:uary)?|feb(?:ruary)?|mar(?:ch)?|apr(?:il)?|may|jun(?:e)?|jul(?:y)?|aug(?:ust)?|sep(?:t(?:ember)?)?|oct(?:ober)?|nov(?:ember)?|dec(?:ember)?)\s+\d{1,2}(?:,\s*20\d{2})?\b/gi;
-  const nowDate = new Date();
-  let match: RegExpExecArray | null;
-  while ((match = monthDayYear.exec(text)) !== null) {
+  const currentDate = new Date();
+  for (const match of text.matchAll(monthDayYear)) {
     const raw = match[0];
     const hasYear = /20\d{2}/.test(raw);
     if (hasYear) {
@@ -170,14 +169,12 @@ function getFutureTimestampCandidates(text: string): number[] {
       continue;
     }
 
-    const thisYearParsed = Date.parse(`${raw}, ${nowDate.getUTCFullYear()}`);
+    const thisYearParsed = Date.parse(`${raw}, ${currentDate.getFullYear()}`);
     if (!isNaN(thisYearParsed) && thisYearParsed > now) {
       results.push(thisYearParsed);
       continue;
     }
-    const nextYearParsed = Date.parse(
-      `${raw}, ${nowDate.getUTCFullYear() + 1}`
-    );
+    const nextYearParsed = Date.parse(`${raw}, ${currentDate.getFullYear() + 1}`);
     if (!isNaN(nextYearParsed) && nextYearParsed > now) {
       results.push(nextYearParsed);
     }
@@ -194,6 +191,7 @@ function extractUpcomingDateFromArticleText(text: string): string {
 }
 
 function extractEventNameFromArticle(title: string, text: string): string {
+  // Match common announcement formats such as "GLORY 107" or "COLLISION 9".
   const eventMatch = (title + "\n" + text).match(
     /\b(?:GLORY|COLLISION)\s+\d{1,3}(?:[-\s][A-Za-z0-9]+){0,6}\b/i
   );
@@ -204,6 +202,7 @@ function extractEventNameFromArticle(title: string, text: string): string {
 }
 
 function extractLocationFromArticleText(text: string): string {
+  // Match venue/location phrases like "at Rotterdam Ahoy" or "in Ahoy Arena".
   const locationMatch = text.match(
     /\b(?:at|in)\s+([A-Z][A-Za-z0-9'.&-]*(?:\s+[A-Z][A-Za-z0-9'.&-]*){0,5}(?:\s+(?:Arena|Stadium|Ahoy|Center|Centre|Hall))?)/m
   );
@@ -320,6 +319,8 @@ async function getArticleEventFromStaticPage(articleURL: URL): Promise<GloryEven
 
     return {
       name: extractEventNameFromArticle(title, bodyText),
+      // Prefer canonical event URLs when present, even if details were derived
+      // from article content.
       url: canonicalEventURLs[0] ?? articleURL,
       date,
       location: extractLocationFromArticleText(bodyText),
@@ -637,7 +638,7 @@ async function getAllDetailedEventsViaBrowser(): Promise<GloryEvent[]> {
     const urls = await getEventURLsViaBrowser(page);
     if (!urls.length) {
       throw new Error(
-        "Browser fallback: no event URLs found on the events page"
+        "Browser fallback: events page loaded but no event URLs were found in the rendered DOM"
       );
     }
 
