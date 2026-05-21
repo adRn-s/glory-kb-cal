@@ -471,8 +471,8 @@ function getFutureTimestampCandidates(text: string): number[] {
 function extractUpcomingDateFromArticleText(text: string): string {
   const candidates = getFutureTimestampCandidates(text);
   if (!candidates.length) return "";
-  const soonest = Math.min(...candidates);
-  return String(Math.floor(soonest / 1000));
+  const earliestFutureTimestamp = Math.min(...candidates);
+  return String(Math.floor(earliestFutureTimestamp / 1000));
 }
 
 function extractEventNameFromArticle(title: string, text: string): string {
