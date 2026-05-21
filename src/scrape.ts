@@ -1,5 +1,6 @@
 import { parse } from "node-html-parser";
 import { decode } from "html-entities";
+import type { Page } from "playwright";
 
 const BASE_URL = "https://glorykickboxing.com";
 const EVENTS_PAGE_URL = new URL(`${BASE_URL}/en/events`);
@@ -358,10 +359,7 @@ function extractEventFromHTML(html: string, url: URL): GloryEvent {
  * Uses a Playwright Page to collect event-detail URLs from the events listing
  * page after JavaScript has rendered the content.
  */
-async function getEventURLsViaBrowser(
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  page: any
-): Promise<URL[]> {
+async function getEventURLsViaBrowser(page: Page): Promise<URL[]> {
   console.log("\nBrowser: navigating to events page…");
   await page.goto(EVENTS_PAGE_URL.href, {
     waitUntil: "networkidle",
@@ -392,8 +390,7 @@ async function getEventURLsViaBrowser(
  * falls back to the fully-rendered HTML.
  */
 async function getDetailsFromEventURLViaBrowser(
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  page: any,
+  page: Page,
   url: URL
 ): Promise<GloryEvent> {
   console.log(`\nBrowser: getting details from ${url.href}`);
@@ -429,11 +426,7 @@ async function getAllDetailedEventsViaBrowser(): Promise<GloryEvent[]> {
   const { chromium } = await import("playwright");
   const browser = await chromium.launch({ headless: true });
   try {
-    const context = await browser.newContext({
-      userAgent:
-        "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 " +
-        "(KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
-    });
+    const context = await browser.newContext();
     const page = await context.newPage();
 
     // 1. Discover event URLs
