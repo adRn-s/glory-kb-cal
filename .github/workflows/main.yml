@@ -1,15 +1,23 @@
 name: GitHub Self-Updating Repository
 
 on:
+  pull_request:
   workflow_dispatch:
   schedule:
     - cron: "0 */4 * * *"
+
+permissions:
+  contents: write
 
 jobs:
   report:
     runs-on: ubuntu-latest
     steps:
-      - name: Check out repository code
+      - name: Check out pull request code
+        if: github.event_name == 'pull_request'
+        uses: actions/checkout@v4
+      - name: Check out ics branch for publishing
+        if: github.event_name != 'pull_request'
         uses: actions/checkout@v4
         with:
           ref: ics
@@ -17,7 +25,15 @@ jobs:
         run: |
           npm install
           npm start
+      - name: Verify GLORY.ics exists
+        run: |
+          if [ ! -f GLORY.ics ]; then
+            echo "Error: GLORY.ics was not generated."
+            ls -la
+            exit 1
+          fi
       - name: Push to repository
+        if: github.event_name != 'pull_request'
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
