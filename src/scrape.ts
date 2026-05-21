@@ -12,6 +12,30 @@ const NEWS_PAGE_URLS = [
 ];
 const EVENT_PATH_PATTERN = /^\/(en\/)?events\/[a-z0-9-]+$/;
 const NEWS_PATH_PATTERN = /^\/(en\/)?news\/[a-z0-9-]+$/;
+const MAX_PLAUSIBLE_FUTURE_EVENT_MS = 1000 * 60 * 60 * 24 * 366 * 5;
+const MONTH_NAME_PATTERN =
+  "(?:jan(?:uary)?|feb(?:ruary)?|mar(?:ch)?|apr(?:il)?|may|jun(?:e)?|jul(?:y)?|aug(?:ust)?|sep(?:t(?:ember)?)?|oct(?:ober)?|nov(?:ember)?|dec(?:ember)?)";
+const WEEKDAY_PATTERN =
+  "(?:mon(?:day)?|tue(?:sday)?|wed(?:nesday)?|thu(?:rsday)?|fri(?:day)?|sat(?:urday)?|sun(?:day)?)";
+const OPTIONAL_TIME_PATTERN =
+  "(?:\\s*(?:at\\s+)?\\d{1,2}(?::\\d{2})?(?:\\s*[AP]\\.?M\\.?)?(?:\\s*(?:GMT|UTC|CET|CEST|EST|EDT|PST|PDT))?)?";
+const ISO_DATE_PATTERN =
+  /\b20\d{2}-\d{2}-\d{2}(?:[T\s]\d{2}:\d{2}(?::\d{2})?(?:\.\d+)?(?:Z|[+-]\d{2}:?\d{2})?)?\b/gi;
+const HUMAN_DATE_WITH_YEAR_PATTERN = new RegExp(
+  `\\b(?:${WEEKDAY_PATTERN},?\\s+)?${MONTH_NAME_PATTERN}\\s+\\d{1,2}(?:,\\s*|\\s+)20\\d{2}${OPTIONAL_TIME_PATTERN}\\b`,
+  "gi"
+);
+const HUMAN_DATE_WITHOUT_YEAR_PATTERN = new RegExp(
+  `\\b(?:${WEEKDAY_PATTERN},?\\s+)?${MONTH_NAME_PATTERN}\\s+\\d{1,2}(?!,?\\s*20\\d{2})${OPTIONAL_TIME_PATTERN}\\b`,
+  "gi"
+);
+
+type DateCandidate = {
+  raw: string;
+  source: string;
+  timestampMs: number;
+  priority: number;
+};
 
 // ---------------------------------------------------------------------------
 // Shared helpers
@@ -34,10 +58,302 @@ function extractNextData(html: string): Record<string, unknown> | null {
 /**
  * Returns true when the event's unix-timestamp date is in the future.
  */
-function isUpcoming(event: GloryEvent): boolean {
-  const ts = parseInt(event.date, 10);
-  if (isNaN(ts)) return false;
-  return ts * 1000 > Date.now();
+function isUpcoming(event: GloryEvent, context?: string): boolean {
+  const timestampMs = getEventTimestampMs(event);
+  const now = Date.now();
+  const upcoming = timestampMs !== null && timestampMs > now;
+
+  if (context) {
+    const parsedDetails =
+      timestampMs === null
+        ? `raw="${event.date}" (unparseable)`
+        : `raw="${event.date}" -> ${formatTimestamp(timestampMs)} (unix ${Math.floor(
+            timestampMs / 1000
+          )})`;
+    console.log(
+      `${context}: classified ${event.url.href} as ${
+        upcoming ? "upcoming" : "past"
+      } using ${parsedDetails}; now=${formatTimestamp(now)}`
+    );
+  }
+
+  return upcoming;
+}
+
+function getEventTimestampMs(event: GloryEvent): number | null {
+  return parseTimestampValue(event.date);
+}
+
+function formatTimestamp(timestampMs: number): string {
+  return new Date(timestampMs).toISOString();
+}
+
+function normalizeText(text: string): string {
+  return text.replace(/\s+/g, " ").trim();
+}
+
+function isPlausibleTimestamp(timestampMs: number): boolean {
+  return (
+    Number.isFinite(timestampMs) &&
+    timestampMs >= Date.UTC(2020, 0, 1) &&
+    timestampMs <= Date.now() + MAX_PLAUSIBLE_FUTURE_EVENT_MS
+  );
+}
+
+function parseTimestampValue(value: string | number): number | null {
+  if (typeof value === "number") {
+    if (!Number.isFinite(value)) return null;
+    const timestampMs = Math.abs(value) >= 1e12 ? value : value * 1000;
+    return isPlausibleTimestamp(timestampMs) ? timestampMs : null;
+  }
+
+  const raw = normalizeText(value);
+  if (!raw) return null;
+
+  if (/^\d{13}$/.test(raw)) {
+    const timestampMs = Number(raw);
+    return isPlausibleTimestamp(timestampMs) ? timestampMs : null;
+  }
+
+  if (/^\d{10}$/.test(raw)) {
+    const timestampMs = Number(raw) * 1000;
+    return isPlausibleTimestamp(timestampMs) ? timestampMs : null;
+  }
+
+  const parsed = Date.parse(raw);
+  return !isNaN(parsed) && isPlausibleTimestamp(parsed) ? parsed : null;
+}
+
+function getDateCandidatePriority(basePriority: number, raw: string): number {
+  let priority = basePriority;
+  if (/\b\d{1,2}:\d{2}\b/.test(raw)) priority += 20;
+  if (/\b(?:[AP]\.?M\.?)\b/i.test(raw)) priority += 10;
+  if (/\b(?:GMT|UTC|CET|CEST|EST|EDT|PST|PDT)\b/i.test(raw)) priority += 10;
+  if (/20\d{2}/.test(raw)) priority += 5;
+  return priority;
+}
+
+function pushDateCandidate(
+  candidates: DateCandidate[],
+  raw: string | number,
+  source: string,
+  basePriority: number
+) {
+  const normalized = normalizeText(String(raw));
+  if (!normalized) return;
+
+  const timestampMs = parseTimestampValue(normalized);
+  if (timestampMs === null) return;
+
+  candidates.push({
+    raw: normalized,
+    source,
+    timestampMs,
+    priority: getDateCandidatePriority(basePriority, normalized),
+  });
+}
+
+function addInferredYear(raw: string, year: number): string {
+  if (/20\d{2}/.test(raw)) return raw;
+
+  const monthDayMatch = raw.match(
+    new RegExp(`(${MONTH_NAME_PATTERN}\\s+\\d{1,2})`, "i")
+  );
+  if (!monthDayMatch?.[1]) return raw;
+
+  return raw.replace(monthDayMatch[1], `${monthDayMatch[1]}, ${year}`);
+}
+
+function dedupeDateCandidates(candidates: DateCandidate[]): DateCandidate[] {
+  const byKey = new Map<string, DateCandidate>();
+
+  for (const candidate of candidates) {
+    const key = `${candidate.source}|${candidate.raw}|${candidate.timestampMs}`;
+    const existing = byKey.get(key);
+    if (!existing || candidate.priority > existing.priority) {
+      byKey.set(key, candidate);
+    }
+  }
+
+  return [...byKey.values()];
+}
+
+function extractDateCandidatesFromText(
+  text: string,
+  source: string,
+  basePriority: number,
+  inferMissingYear = true
+): DateCandidate[] {
+  const normalized = normalizeText(text);
+  if (!normalized) return [];
+
+  const candidates: DateCandidate[] = [];
+
+  for (const match of normalized.matchAll(ISO_DATE_PATTERN)) {
+    if (match[0]) pushDateCandidate(candidates, match[0], source, basePriority);
+  }
+
+  for (const match of normalized.matchAll(HUMAN_DATE_WITH_YEAR_PATTERN)) {
+    if (match[0]) pushDateCandidate(candidates, match[0], source, basePriority);
+  }
+
+  if (inferMissingYear && !/20\d{2}/.test(normalized)) {
+    const currentYear = new Date().getUTCFullYear();
+
+    for (const match of normalized.matchAll(HUMAN_DATE_WITHOUT_YEAR_PATTERN)) {
+      const raw = match[0];
+      if (!raw || /20\d{2}/.test(raw)) continue;
+      pushDateCandidate(
+        candidates,
+        addInferredYear(raw, currentYear),
+        `${source} (current year)`,
+        basePriority - 5
+      );
+      pushDateCandidate(
+        candidates,
+        addInferredYear(raw, currentYear + 1),
+        `${source} (next year)`,
+        basePriority - 10
+      );
+    }
+  }
+
+  return dedupeDateCandidates(candidates);
+}
+
+function extractDateCandidatesFromHTML(html: string): DateCandidate[] {
+  const root = parse(html);
+  const candidates: DateCandidate[] = [];
+
+  for (const el of root.querySelectorAll("time")) {
+    const datetime = el.getAttribute("datetime");
+    if (datetime) {
+      pushDateCandidate(candidates, datetime, "time[datetime]", 130);
+    }
+
+    const dataTimestamp = el.getAttribute("data-timestamp");
+    if (dataTimestamp) {
+      pushDateCandidate(candidates, dataTimestamp, "time[data-timestamp]", 125);
+    }
+
+    const timeText = normalizeText(el.innerText ?? el.textContent ?? "");
+    candidates.push(
+      ...extractDateCandidatesFromText(timeText, "time element text", 140)
+    );
+  }
+
+  for (const el of root.querySelectorAll("[data-timestamp]")) {
+    const dataTimestamp = el.getAttribute("data-timestamp");
+    if (dataTimestamp) {
+      pushDateCandidate(candidates, dataTimestamp, "[data-timestamp]", 120);
+    }
+
+    const elText = normalizeText(el.innerText ?? el.textContent ?? "");
+    candidates.push(
+      ...extractDateCandidatesFromText(elText, "[data-timestamp] text", 110)
+    );
+  }
+
+  const dateTextSelectors = [
+    "[class*='date']",
+    "[class*='Date']",
+    "[class*='time']",
+    "[class*='Time']",
+    "[class*='schedule']",
+    "[class*='Schedule']",
+  ];
+  const seenText = new Set<string>();
+  for (const el of root.querySelectorAll(dateTextSelectors.join(", "))) {
+    const text = normalizeText(el.innerText ?? el.textContent ?? "");
+    if (!text || seenText.has(text)) continue;
+    seenText.add(text);
+    candidates.push(
+      ...extractDateCandidatesFromText(text, "date/time element text", 100)
+    );
+  }
+
+  const mainText = normalizeText(
+    root.querySelector("main")?.innerText ??
+      root.querySelector("article")?.innerText ??
+      ""
+  );
+  candidates.push(...extractDateCandidatesFromText(mainText, "main/article text", 90));
+
+  const metaPublished = root
+    .querySelector("meta[property='article:published_time']")
+    ?.getAttribute("content");
+  if (metaPublished) {
+    pushDateCandidate(
+      candidates,
+      metaPublished,
+      "meta[property='article:published_time']",
+      10
+    );
+  }
+
+  for (const match of html.matchAll(ISO_DATE_PATTERN)) {
+    if (match[0]) pushDateCandidate(candidates, match[0], "raw HTML ISO", 5);
+  }
+
+  return dedupeDateCandidates(candidates);
+}
+
+function selectBestDateCandidate(candidates: DateCandidate[]): DateCandidate | null {
+  const uniqueCandidates = dedupeDateCandidates(candidates);
+  if (!uniqueCandidates.length) return null;
+
+  const now = Date.now();
+  const futureCandidates = uniqueCandidates
+    .filter((candidate) => candidate.timestampMs > now)
+    .sort(
+      (a, b) =>
+        b.priority - a.priority || a.timestampMs - b.timestampMs
+    );
+
+  if (futureCandidates.length) return futureCandidates[0] ?? null;
+
+  const pastCandidates = uniqueCandidates.sort(
+    (a, b) => b.priority - a.priority || b.timestampMs - a.timestampMs
+  );
+  return pastCandidates[0] ?? null;
+}
+
+function logDateCandidateSelection(
+  context: string,
+  url: URL,
+  candidates: DateCandidate[],
+  selectedCandidate: DateCandidate | null
+) {
+  const uniqueCandidates = dedupeDateCandidates(candidates).sort(
+    (a, b) => b.priority - a.priority || a.timestampMs - b.timestampMs
+  );
+
+  if (!uniqueCandidates.length) {
+    console.log(`\n${context}: no parsed date candidates for ${url.href}`);
+    return;
+  }
+
+  console.log(`\n${context}: date candidates for ${url.href}`);
+  for (const candidate of uniqueCandidates.slice(0, 8)) {
+    console.log(
+      `  - "${candidate.raw}" [${candidate.source}] -> ${formatTimestamp(
+        candidate.timestampMs
+      )} (priority ${candidate.priority})`
+    );
+  }
+  if (uniqueCandidates.length > 8) {
+    console.log(`  - ... ${uniqueCandidates.length - 8} more candidate(s) omitted`);
+  }
+
+  if (selectedCandidate) {
+    console.log(
+      `${context}: selected "${selectedCandidate.raw}" [${
+        selectedCandidate.source
+      }] -> ${formatTimestamp(selectedCandidate.timestampMs)} (unix ${Math.floor(
+        selectedCandidate.timestampMs / 1000
+      )})`
+    );
+  }
 }
 
 /**
@@ -146,41 +462,10 @@ function dedupeEventsPreferCanonical(events: GloryEvent[]): GloryEvent[] {
 }
 
 function getFutureTimestampCandidates(text: string): number[] {
-  const now = Date.now();
-  const results: number[] = [];
-
-  const isoMatches =
-    text.match(/\b20\d{2}-\d{2}-\d{2}(?:[T\s]\d{2}:\d{2}(?::\d{2})?Z?)?\b/g) ??
-    [];
-  for (const raw of isoMatches) {
-    const parsed = Date.parse(raw);
-    if (!isNaN(parsed) && parsed > now) results.push(parsed);
-  }
-
-  const monthDayYear =
-    /\b(?:jan(?:uary)?|feb(?:ruary)?|mar(?:ch)?|apr(?:il)?|may|jun(?:e)?|jul(?:y)?|aug(?:ust)?|sep(?:t(?:ember)?)?|oct(?:ober)?|nov(?:ember)?|dec(?:ember)?)\s+\d{1,2}(?:,\s*20\d{2})?\b/gi;
-  const currentDate = new Date();
-  for (const match of text.matchAll(monthDayYear)) {
-    const raw = match[0];
-    const hasYear = /20\d{2}/.test(raw);
-    if (hasYear) {
-      const parsed = Date.parse(raw);
-      if (!isNaN(parsed) && parsed > now) results.push(parsed);
-      continue;
-    }
-
-    const thisYearParsed = Date.parse(`${raw}, ${currentDate.getFullYear()}`);
-    if (!isNaN(thisYearParsed) && thisYearParsed > now) {
-      results.push(thisYearParsed);
-      continue;
-    }
-    const nextYearParsed = Date.parse(`${raw}, ${currentDate.getFullYear() + 1}`);
-    if (!isNaN(nextYearParsed) && nextYearParsed > now) {
-      results.push(nextYearParsed);
-    }
-  }
-
-  return results;
+  return extractDateCandidatesFromText(text, "article text", 80)
+    .map((candidate) => candidate.timestampMs)
+    .filter((timestampMs) => timestampMs > Date.now())
+    .sort((a, b) => a - b);
 }
 
 function extractUpcomingDateFromArticleText(text: string): string {
@@ -258,15 +543,25 @@ async function getDetailsFromEventURL(url: URL): Promise<GloryEvent> {
     const response = await fetch(url);
     const text = await response.text();
 
-    // Try __NEXT_DATA__ first
-    const nextData = extractNextData(text);
-    if (nextData) {
-      const event = extractEventFromNextData(nextData, url);
-      if (event) return event;
+    let htmlEvent: GloryEvent | null = null;
+    try {
+      htmlEvent = extractEventFromHTML(text, url);
+    } catch (error) {
+      console.error(`HTML extraction failed for ${url.href}:`, error);
     }
 
-    // Fall back to HTML parsing
-    return extractEventFromHTML(text, url);
+    const nextData = extractNextData(text);
+    let nextDataEvent: GloryEvent | null = null;
+    if (nextData) {
+      nextDataEvent = extractEventFromNextData(nextData, url);
+    }
+
+    const event = choosePreferredEvent(url, htmlEvent, nextDataEvent);
+    if (event) {
+      return event;
+    }
+
+    throw new Error(`Failed to retrieve event details (no date) for: ${url.href}`);
   } catch (error) {
     console.error(error);
     throw new Error(`Failed to retrieve event: ${url.href}\n${error}`);
@@ -281,7 +576,7 @@ async function getUpcomingEventsFromURLs(urls: URL[]): Promise<GloryEvent[]> {
         result.status === "fulfilled"
     )
     .map((result) => result.value)
-    .filter(isUpcoming);
+    .filter((event) => isUpcoming(event, "Static extraction"));
 }
 
 async function getArticleEventFromStaticPage(articleURL: URL): Promise<GloryEvent | null> {
@@ -367,7 +662,7 @@ async function getUpcomingEventsFromStaticNewsPages(): Promise<GloryEvent[]> {
     )
     .map((result) => result.value)
     .filter((event): event is GloryEvent => event !== null)
-    .filter(isUpcoming);
+    .filter((event) => isUpcoming(event, "Static news fallback"));
 
   if (!events.length) {
     console.log(
@@ -410,21 +705,20 @@ function extractEventFromNextData(
   ).trim();
   if (!name) return null;
 
-  // Date — accept ISO string, unix timestamp string, or number
-  const rawDate = ev?.date ?? ev?.startDate ?? ev?.startTime ?? ev?.datetime;
-  let date = "";
-  if (typeof rawDate === "number") {
-    date = String(rawDate);
-  } else if (typeof rawDate === "string") {
-    // If it looks like an ISO date, convert to unix timestamp
-    const parsed = Date.parse(rawDate);
-    if (!isNaN(parsed)) {
-      date = String(Math.floor(parsed / 1000));
-    } else {
-      date = rawDate;
+  const dateCandidates: DateCandidate[] = [];
+  for (const [field, rawDate] of Object.entries({
+    date: ev?.date,
+    startDate: ev?.startDate,
+    startTime: ev?.startTime,
+    datetime: ev?.datetime,
+  })) {
+    if (typeof rawDate === "string" || typeof rawDate === "number") {
+      pushDateCandidate(dateCandidates, rawDate, `__NEXT_DATA__.${field}`, 60);
     }
   }
-  if (!date) return null;
+  const selectedDate = selectBestDateCandidate(dateCandidates);
+  logDateCandidateSelection("__NEXT_DATA__", url, dateCandidates, selectedDate);
+  if (!selectedDate) return null;
 
   // Location
   const venue = ev?.venue as Record<string, unknown> | undefined;
@@ -440,7 +734,13 @@ function extractEventFromNextData(
   // Fights
   const fights = extractFightsFromNextDataEvent(ev);
 
-  return { name, url, date, location, fights };
+  return {
+    name,
+    url,
+    date: String(Math.floor(selectedDate.timestampMs / 1000)),
+    location,
+    fights,
+  };
 }
 
 /**
@@ -501,33 +801,9 @@ function extractEventFromHTML(html: string, url: URL): GloryEvent {
       "Unknown Event"
   );
 
-  // Date — look for time elements or data-timestamp attributes
-  const timeEl =
-    root.querySelector("time[datetime]") ??
-    root.querySelector("[data-timestamp]");
-  let date = "";
-  if (timeEl) {
-    const dt =
-      timeEl.getAttribute("datetime") ??
-      timeEl.getAttribute("data-timestamp") ??
-      "";
-    const parsed = Date.parse(dt);
-    if (!isNaN(parsed)) {
-      date = String(Math.floor(parsed / 1000));
-    } else {
-      date = dt;
-    }
-  }
-  if (!date) {
-    // Last resort: scrape page for ISO date patterns
-    const match = html.match(
-      /(\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?Z?)/
-    );
-    if (match?.[1]) {
-      const parsed = Date.parse(match[1]);
-      if (!isNaN(parsed)) date = String(Math.floor(parsed / 1000));
-    }
-  }
+  const dateCandidates = extractDateCandidatesFromHTML(html);
+  const selectedDate = selectBestDateCandidate(dateCandidates);
+  logDateCandidateSelection("HTML", url, dateCandidates, selectedDate);
 
   // Location
   const locationEl =
@@ -548,13 +824,69 @@ function extractEventFromHTML(html: string, url: URL): GloryEvent {
     if (text) fights.push(decode(`• ${text}`));
   }
 
-  if (!date) {
+  if (!selectedDate) {
     throw new Error(
       `Failed to retrieve event details (no date) for: ${url.href}`
     );
   }
 
-  return { name, url, date, location, fights };
+  return {
+    name,
+    url,
+    date: String(Math.floor(selectedDate.timestampMs / 1000)),
+    location,
+    fights,
+  };
+}
+
+function choosePreferredEvent(
+  url: URL,
+  htmlEvent: GloryEvent | null,
+  nextDataEvent: GloryEvent | null
+): GloryEvent | null {
+  if (!htmlEvent && !nextDataEvent) return null;
+
+  let preferredDateEvent: GloryEvent | null;
+  if (htmlEvent && isUpcoming(htmlEvent)) {
+    preferredDateEvent = htmlEvent;
+  } else if (nextDataEvent && isUpcoming(nextDataEvent)) {
+    preferredDateEvent = nextDataEvent;
+  } else {
+    preferredDateEvent = htmlEvent ?? nextDataEvent;
+  }
+  const fallbackEvent =
+    preferredDateEvent === htmlEvent ? nextDataEvent : htmlEvent;
+  const resolvedPreferredEvent = preferredDateEvent ?? fallbackEvent;
+  if (!resolvedPreferredEvent) return null;
+
+  if (
+    htmlEvent &&
+    nextDataEvent &&
+    htmlEvent.date !== nextDataEvent.date
+  ) {
+    console.log(
+      `Date source preference for ${url.href}: keeping ${
+        resolvedPreferredEvent === htmlEvent ? "HTML" : "__NEXT_DATA__"
+      } date ${resolvedPreferredEvent.date} over ${
+        resolvedPreferredEvent === htmlEvent ? "__NEXT_DATA__" : "HTML"
+      } date ${fallbackEvent?.date ?? "n/a"}`
+    );
+  }
+
+  return {
+    name:
+      resolvedPreferredEvent.name ??
+      fallbackEvent?.name ??
+      url.pathname.split("/").pop() ??
+      "Unknown Event",
+    url,
+    date: resolvedPreferredEvent.date,
+    location: resolvedPreferredEvent.location || fallbackEvent?.location || "",
+    fights:
+      resolvedPreferredEvent.fights.length
+        ? resolvedPreferredEvent.fights
+        : fallbackEvent?.fights ?? [],
+  };
 }
 
 // ---------------------------------------------------------------------------
@@ -601,25 +933,36 @@ async function getDetailsFromEventURLViaBrowser(
   console.log(`\nBrowser: getting details from ${url.href}`);
   await page.goto(url.href, { waitUntil: "networkidle", timeout: 60000 });
 
+  const html: string = await page.content();
+  let htmlEvent: GloryEvent | null = null;
+  try {
+    htmlEvent = extractEventFromHTML(html, url);
+  } catch (error) {
+    console.error(`Browser HTML extraction failed for ${url.href}:`, error);
+  }
+
   // Try __NEXT_DATA__ injected by Next.js after hydration
   const nextDataText: string | null = await page.evaluate(() => {
     const el = document.querySelector("#__NEXT_DATA__");
     return el?.textContent ?? null;
   });
 
+  let nextDataEvent: GloryEvent | null = null;
   if (nextDataText) {
     try {
       const nextData = JSON.parse(nextDataText) as Record<string, unknown>;
-      const event = extractEventFromNextData(nextData, url);
-      if (event) return event;
+      nextDataEvent = extractEventFromNextData(nextData, url);
     } catch {
       // ignore parse errors, fall through to HTML
     }
   }
 
-  // Fall back to the fully-rendered HTML
-  const html: string = await page.content();
-  return extractEventFromHTML(html, url);
+  const event = choosePreferredEvent(url, htmlEvent, nextDataEvent);
+  if (event) {
+    return event;
+  }
+
+  throw new Error(`Failed to retrieve event details (no date) for: ${url.href}`);
 }
 
 /**
@@ -647,7 +990,7 @@ async function getAllDetailedEventsViaBrowser(): Promise<GloryEvent[]> {
     for (const url of urls) {
       try {
         const event = await getDetailsFromEventURLViaBrowser(page, url);
-        if (isUpcoming(event)) {
+        if (isUpcoming(event, "Browser extraction")) {
           events.push(event);
         } else {
           console.log(`  Skipping past event: ${url.href}`);

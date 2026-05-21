@@ -24,8 +24,11 @@ This feed is not affiliated with GLORY Kickboxing.
 
 - Using a GitHub Action, the GLORY Kickboxing website (`glorykickboxing.com`) is scraped several times each day, and the `GLORY.ics` file (from the URL above) is updated with any new information found
 - The scraper uses a **hybrid strategy**:
-  1. **Static path (fast):** fetches `/en/events` and the homepage without a browser, tries to parse the embedded `__NEXT_DATA__` JSON that Next.js injects, and falls back to anchor-tag scanning. If at least one valid upcoming event is found, this path is used.
-  2. **Browser fallback (robust):** if the static path yields zero upcoming events (e.g. because the page is fully client-rendered or gated), a headless Chromium browser is launched via [Playwright](https://playwright.dev/). It renders the events page with JavaScript, then navigates to each event page to extract details.
+  1. **Static `/en/events` (fast):** fetches the canonical events page without a browser, tries to parse embedded `__NEXT_DATA__`, and falls back to anchor-tag scanning.
+  2. **Static news/pages fallback:** if `/en/events` yields no usable upcoming events, recent GLORY news/article pages are scanned for future event announcements and canonical event links.
+  3. **Browser fallback (last resort):** only after both static strategies fail, a headless Chromium browser is launched via [Playwright](https://playwright.dev/). It renders the events page with JavaScript, then navigates to each event page to extract details.
+
+- Event dates are chosen from the strongest parsed candidate on each page, preferring visible page date/time text and reliable `time`/timestamp attributes over brittle metadata.
 
 **To run locally:**
 
