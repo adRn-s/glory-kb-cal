@@ -13,20 +13,17 @@ jobs:
   report:
     runs-on: ubuntu-latest
     steps:
-      - name: Check out pull request code
-        if: github.event_name == 'pull_request'
-        uses: actions/checkout@v4
-      - name: Check out ics branch for publishing
-        if: github.event_name != 'pull_request'
+      - name: Check out source branch
         uses: actions/checkout@v4
         with:
-          ref: ics
+          ref: ${{ github.event_name == 'pull_request' && github.head_ref || github.ref_name }}
       - name: Install dependencies
         run: npm install
       - name: Install Playwright browsers
         run: npx playwright install --with-deps chromium
       - name: Create GLORY.ics
-        run: npm start
+        run: |
+          npm start
       - name: Verify GLORY.ics exists
         run: |
           if [ ! -f GLORY.ics ]; then
@@ -34,6 +31,27 @@ jobs:
             ls -la
             exit 1
           fi
+      - name: Upload GLORY.ics artifact
+        if: github.event_name == 'pull_request'
+        uses: actions/upload-artifact@v4
+        with:
+          name: GLORY.ics
+          path: GLORY.ics
+      - name: Switch to publish branch
+        if: github.event_name != 'pull_request'
+        run: |
+          cp GLORY.ics /tmp/GLORY.ics
+          git fetch origin ics:ics || true
+          if git show-ref --verify --quiet refs/heads/ics; then
+            git checkout ics
+          else
+            git checkout --orphan ics
+            git rm -rf .
+          fi
+      - name: Copy generated calendar into publish branch
+        if: github.event_name != 'pull_request'
+        run: |
+          cp /tmp/GLORY.ics ./GLORY.ics
       - name: Push to repository
         if: github.event_name != 'pull_request'
         run: |
