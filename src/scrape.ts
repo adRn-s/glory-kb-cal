@@ -5,6 +5,13 @@ import type { Page } from "playwright";
 const BASE_URL = "https://glorykickboxing.com";
 const EVENTS_PAGE_URL = new URL(`${BASE_URL}/en/events`);
 const HOME_URL = new URL(BASE_URL);
+const NEWS_PAGE_URLS = [
+  new URL(`${BASE_URL}/news`),
+  new URL(`${BASE_URL}/en/news`),
+  HOME_URL,
+];
+const EVENT_PATH_PATTERN = /^\/(en\/)?events\/[a-z0-9-]+$/;
+const NEWS_PATH_PATTERN = /^\/(en\/)?news\/[a-z0-9-]+$/;
 
 // ---------------------------------------------------------------------------
 // Shared helpers
@@ -49,14 +56,27 @@ function dedupeURLs(urls: URL[]): URL[] {
  * Returns event-detail URLs found in an HTML string via anchor-tag scanning.
  */
 function extractEventURLsFromHTML(html: string): URL[] {
+  return extractMatchingURLsFromHTML(html, EVENT_PATH_PATTERN);
+}
+
+/**
+ * Returns news/article URLs found in an HTML string via anchor-tag scanning.
+ */
+function extractNewsURLsFromHTML(html: string): URL[] {
+  return extractMatchingURLsFromHTML(html, NEWS_PATH_PATTERN);
+}
+
+function extractMatchingURLsFromHTML(html: string, pathPattern: RegExp): URL[] {
   const root = parse(html);
   const anchors = root.querySelectorAll("a[href]");
   return anchors
     .map((a) => {
       const href = a.getAttribute("href") ?? "";
-      // Match paths like /en/events/glory-100 or /events/glory-100
-      if (/^\/(en\/)?events\/[a-z0-9-]+$/.test(href)) {
-        return new URL(`${BASE_URL}${href}`);
+      try {
+        const resolved = new URL(href, BASE_URL);
+        if (pathPattern.test(resolved.pathname)) return resolved;
+      } catch {
+        return null;
       }
       return null;
     })
@@ -101,6 +121,95 @@ function extractEventURLsFromNextData(data: Record<string, unknown>): URL[] {
   return [];
 }
 
+function isCanonicalEventURL(url: URL): boolean {
+  return EVENT_PATH_PATTERN.test(url.pathname);
+}
+
+function normalizeEventName(name: string): string {
+  return name.toLowerCase().replace(/\s+/g, " ").trim();
+}
+
+function dedupeEventsPreferCanonical(events: GloryEvent[]): GloryEvent[] {
+  const byKey = new Map<string, GloryEvent>();
+  for (const event of events) {
+    const key = `${normalizeEventName(event.name)}|${event.date}`;
+    const existing = byKey.get(key);
+    if (!existing) {
+      byKey.set(key, event);
+      continue;
+    }
+    if (isCanonicalEventURL(event.url) && !isCanonicalEventURL(existing.url)) {
+      byKey.set(key, event);
+    }
+  }
+  return [...byKey.values()];
+}
+
+function getFutureTimestampCandidates(text: string): number[] {
+  const now = Date.now();
+  const results: number[] = [];
+
+  const isoMatches =
+    text.match(/\b20\d{2}-\d{2}-\d{2}(?:[T\s]\d{2}:\d{2}(?::\d{2})?Z?)?\b/g) ??
+    [];
+  for (const raw of isoMatches) {
+    const parsed = Date.parse(raw);
+    if (!isNaN(parsed) && parsed > now) results.push(parsed);
+  }
+
+  const monthDayYear =
+    /\b(?:jan(?:uary)?|feb(?:ruary)?|mar(?:ch)?|apr(?:il)?|may|jun(?:e)?|jul(?:y)?|aug(?:ust)?|sep(?:t(?:ember)?)?|oct(?:ober)?|nov(?:ember)?|dec(?:ember)?)\s+\d{1,2}(?:,\s*20\d{2})?\b/gi;
+  const nowDate = new Date();
+  let match: RegExpExecArray | null;
+  while ((match = monthDayYear.exec(text)) !== null) {
+    const raw = match[0];
+    const hasYear = /20\d{2}/.test(raw);
+    if (hasYear) {
+      const parsed = Date.parse(raw);
+      if (!isNaN(parsed) && parsed > now) results.push(parsed);
+      continue;
+    }
+
+    const thisYearParsed = Date.parse(`${raw}, ${nowDate.getUTCFullYear()}`);
+    if (!isNaN(thisYearParsed) && thisYearParsed > now) {
+      results.push(thisYearParsed);
+      continue;
+    }
+    const nextYearParsed = Date.parse(
+      `${raw}, ${nowDate.getUTCFullYear() + 1}`
+    );
+    if (!isNaN(nextYearParsed) && nextYearParsed > now) {
+      results.push(nextYearParsed);
+    }
+  }
+
+  return results;
+}
+
+function extractUpcomingDateFromArticleText(text: string): string {
+  const candidates = getFutureTimestampCandidates(text);
+  if (!candidates.length) return "";
+  const soonest = Math.min(...candidates);
+  return String(Math.floor(soonest / 1000));
+}
+
+function extractEventNameFromArticle(title: string, text: string): string {
+  const eventMatch = (title + "\n" + text).match(
+    /\b(?:GLORY|COLLISION)\s+\d{1,3}(?:[-\s][A-Za-z0-9]+){0,6}\b/i
+  );
+  if (eventMatch?.[0]) {
+    return decode(eventMatch[0].replace(/\s+/g, " ").trim());
+  }
+  return decode(title.replace(/\s+/g, " ").trim()) || "GLORY Event";
+}
+
+function extractLocationFromArticleText(text: string): string {
+  const locationMatch = text.match(
+    /\b(?:at|in)\s+([A-Z][A-Za-z0-9'.&-]*(?:\s+[A-Z][A-Za-z0-9'.&-]*){0,5}(?:\s+(?:Arena|Stadium|Ahoy|Center|Centre|Hall))?)/m
+  );
+  return decode(locationMatch?.[1]?.trim() ?? "");
+}
+
 // ---------------------------------------------------------------------------
 // Static extraction path
 // ---------------------------------------------------------------------------
@@ -129,22 +238,15 @@ async function getStaticEventURLsFromPage(pageURL: URL): Promise<URL[]> {
 }
 
 /**
- * Collects upcoming event URLs using purely static HTTP fetches.
- * Tries the events listing page first, then the homepage as a secondary
- * source.  Returns a deduplicated list (may be empty if both fail).
+ * Collects event URLs from static `/en/events` only.
  */
 async function getStaticEventURLs(): Promise<URL[]> {
-  const [eventsPageURLs, homeURLs] = await Promise.all([
-    getStaticEventURLsFromPage(EVENTS_PAGE_URL),
-    getStaticEventURLsFromPage(HOME_URL),
-  ]);
-
-  const combined = dedupeURLs([...eventsPageURLs, ...homeURLs]);
-  if (combined.length) {
-    console.log("\nEvent URLs found (via static HTML):");
-    console.log(combined.map((u) => u.href));
+  const urls = dedupeURLs(await getStaticEventURLsFromPage(EVENTS_PAGE_URL));
+  if (urls.length) {
+    console.log("\nEvent URLs found (via static /en/events):");
+    console.log(urls.map((u) => u.href));
   }
-  return combined;
+  return urls;
 }
 
 /**
@@ -170,6 +272,109 @@ async function getDetailsFromEventURL(url: URL): Promise<GloryEvent> {
     console.error(error);
     throw new Error(`Failed to retrieve event: ${url.href}\n${error}`);
   }
+}
+
+async function getUpcomingEventsFromURLs(urls: URL[]): Promise<GloryEvent[]> {
+  const settled = await Promise.allSettled(urls.map(getDetailsFromEventURL));
+  return settled
+    .filter(
+      (result): result is PromiseFulfilledResult<GloryEvent> =>
+        result.status === "fulfilled"
+    )
+    .map((result) => result.value)
+    .filter(isUpcoming);
+}
+
+async function getArticleEventFromStaticPage(articleURL: URL): Promise<GloryEvent | null> {
+  try {
+    console.log(`\nNews fallback: reading article ${articleURL.href}`);
+    const response = await fetch(articleURL);
+    const html = await response.text();
+    const canonicalEventURLs = dedupeURLs(extractEventURLsFromHTML(html));
+
+    for (const canonicalURL of canonicalEventURLs) {
+      try {
+        const event = await getDetailsFromEventURL(canonicalURL);
+        if (isUpcoming(event)) return event;
+      } catch (error) {
+        console.error(
+          `News fallback: failed canonical event extraction for ${canonicalURL.href}:`,
+          error
+        );
+      }
+    }
+
+    const root = parse(html);
+    const title =
+      root.querySelector("h1")?.innerText?.trim() ??
+      root.querySelector("title")?.textContent?.trim() ??
+      "";
+    const bodyText =
+      root.querySelector("main")?.innerText ??
+      root.querySelector("article")?.innerText ??
+      root.innerText ??
+      "";
+
+    const date = extractUpcomingDateFromArticleText(`${title}\n${bodyText}`);
+    if (!date) return null;
+
+    return {
+      name: extractEventNameFromArticle(title, bodyText),
+      url: canonicalEventURLs[0] ?? articleURL,
+      date,
+      location: extractLocationFromArticleText(bodyText),
+      fights: [],
+    };
+  } catch (error) {
+    console.error(`News fallback: failed to parse article ${articleURL.href}:`, error);
+    return null;
+  }
+}
+
+async function getStaticNewsArticleURLs(): Promise<URL[]> {
+  const urlsByPage = await Promise.all(
+    NEWS_PAGE_URLS.map(async (pageURL) => {
+      try {
+        const response = await fetch(pageURL);
+        const html = await response.text();
+        return extractNewsURLsFromHTML(html);
+      } catch {
+        return [];
+      }
+    })
+  );
+  return dedupeURLs(urlsByPage.flat());
+}
+
+async function getUpcomingEventsFromStaticNewsPages(): Promise<GloryEvent[]> {
+  const articleURLs = await getStaticNewsArticleURLs();
+  if (!articleURLs.length) {
+    console.log("\nStatic news/pages fallback: no news article URLs discovered.");
+    return [];
+  }
+
+  console.log("\nNews/article URLs found (static fallback):");
+  console.log(articleURLs.map((u) => u.href));
+
+  const settled = await Promise.allSettled(
+    articleURLs.map(getArticleEventFromStaticPage)
+  );
+  const events = settled
+    .filter(
+      (result): result is PromiseFulfilledResult<GloryEvent | null> =>
+        result.status === "fulfilled"
+    )
+    .map((result) => result.value)
+    .filter((event): event is GloryEvent => event !== null)
+    .filter(isUpcoming);
+
+  if (!events.length) {
+    console.log(
+      "\nStatic news/pages fallback: articles found, but no upcoming events could be extracted."
+    );
+  }
+
+  return dedupeEventsPreferCanonical(events);
 }
 
 /**
@@ -372,10 +577,9 @@ async function getEventURLsViaBrowser(page: Page): Promise<URL[]> {
     );
   });
 
-  const pattern = /^\/(en\/)?events\/[a-z0-9-]+$/;
   const urls = dedupeURLs(
     hrefs
-      .filter((h) => pattern.test(h))
+      .filter((h) => EVENT_PATH_PATTERN.test(h))
       .map((h) => new URL(`${BASE_URL}${h}`))
   );
 
@@ -471,46 +675,57 @@ async function getAllDetailedEventsViaBrowser(): Promise<GloryEvent[]> {
  * Returns details of upcoming GLORY events.
  *
  * Strategy (Option C — hybrid):
- * 1. **Static path**: fetch `/en/events` and the homepage without a browser,
- *    try `__NEXT_DATA__` JSON first then anchor-tag scanning.  If at least
- *    one valid upcoming event is found this way, return immediately.
- * 2. **Browser fallback**: if static extraction yields zero usable upcoming
- *    events, launch a headless Chromium browser via Playwright, render the
- *    events page with JavaScript, and extract event URLs and details from the
- *    live DOM.
+ * 1. **Static `/en/events`**: scrape canonical event pages without browser rendering.
+ * 2. **Static news/pages fallback**: scrape GLORY news articles and page links for
+ *    future event announcements, preferring canonical event URLs when available.
+ * 3. **Browser fallback (last resort)**: render pages via Playwright only after
+ *    static strategies produce zero usable upcoming events.
  */
 async function getAllDetailedEvents(): Promise<GloryEvent[]> {
-  // --- Static path ---
+  const diagnostics: string[] = [];
+
+  console.log("\n[Strategy 1/3] Static `/en/events`");
   const staticURLs = await getStaticEventURLs();
-
-  if (staticURLs.length > 0) {
-    const settled = await Promise.allSettled(
-      staticURLs.map(getDetailsFromEventURL)
-    );
-    const events: GloryEvent[] = settled
-      .filter(
-        (r): r is PromiseFulfilledResult<GloryEvent> =>
-          r.status === "fulfilled"
-      )
-      .map((r) => r.value)
-      .filter(isUpcoming);
-
-    if (events.length > 0) {
-      console.log(`\nStatic path: found ${events.length} upcoming event(s).`);
-      return events;
-    }
-    console.log(
-      "\nStatic path: URLs found but no upcoming events extracted. Falling back to browser…"
-    );
+  if (!staticURLs.length) {
+    diagnostics.push("Static `/en/events`: no event URLs found.");
   } else {
-    console.log(
-      "\nStatic path: no event URLs found. Falling back to browser…"
+    const events = await getUpcomingEventsFromURLs(staticURLs);
+    if (events.length) {
+      console.log(
+        `\nStatic /en/events: found ${events.length} upcoming event(s).`
+      );
+      return dedupeEventsPreferCanonical(events);
+    }
+    diagnostics.push(
+      "Static `/en/events`: event URLs found but all extracted events were past or invalid."
     );
   }
 
-  // --- Browser fallback ---
-  return getAllDetailedEventsViaBrowser();
+  console.log("\n[Strategy 2/3] Static news/pages fallback");
+  const newsEvents = await getUpcomingEventsFromStaticNewsPages();
+  if (newsEvents.length) {
+    console.log(
+      `\nStatic news/pages fallback: found ${newsEvents.length} upcoming event(s).`
+    );
+    return newsEvents;
+  }
+  diagnostics.push(
+    "Static news/pages fallback: no usable upcoming events extracted from articles/pages."
+  );
+
+  console.log("\n[Strategy 3/3] Browser fallback (Playwright)");
+  try {
+    const browserEvents = await getAllDetailedEventsViaBrowser();
+    return dedupeEventsPreferCanonical(browserEvents);
+  } catch (error) {
+    const message =
+      error instanceof Error ? error.message : "Unknown browser fallback error";
+    diagnostics.push(`Browser fallback failed: ${message}`);
+  }
+
+  throw new Error(
+    `Failed to retrieve upcoming GLORY events. Strategy diagnostics:\n- ${diagnostics.join("\n- ")}`
+  );
 }
 
 export { getAllDetailedEvents };
-
