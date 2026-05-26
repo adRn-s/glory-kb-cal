@@ -19,6 +19,11 @@
         text-align: center;
         background-color: rgb(243, 243, 243);
         font-family: "Inter", sans-serif;
+        margin: 0;
+        padding: 32px 16px 48px;
+      }
+      h1 {
+        max-width: 900px;
       }
       .links {
         margin: 40px 20px;
@@ -39,9 +44,11 @@
         text-decoration: none;
         color: inherit;
         transition: 0.3s;
+        min-width: 140px;
       }
       .sub-link:hover {
         box-shadow: 0px 4px 12px 4px rgba(0, 0, 0, 0.2);
+        transform: translateY(-1px);
       }
       .sub-link img {
         width: 80px;
@@ -60,6 +67,45 @@
       code {
         overflow-wrap: break-word;
         max-width: 100%;
+      }
+      .fallback-link {
+        margin-top: 12px;
+        line-height: 1.5;
+      }
+      .fallback-link a {
+        word-break: break-all;
+      }
+      .copy-row {
+        margin-top: 12px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 8px;
+        align-items: center;
+      }
+      .copy-row input {
+        width: min(680px, 90vw);
+        padding: 10px 12px;
+        border: 1px solid lightgray;
+        border-radius: 6px;
+        font: inherit;
+      }
+      .copy-row button {
+        padding: 10px 14px;
+        border: 0;
+        border-radius: 6px;
+        background: #111827;
+        color: white;
+        cursor: pointer;
+        font: inherit;
+      }
+      .copy-row button:hover {
+        background: #374151;
+      }
+      .copy-status {
+        min-height: 1.2em;
+        margin-top: 8px;
+        color: #374151;
       }
     </style>
   </head>
@@ -95,16 +141,43 @@
           >webcal://raw.githubusercontent.com/adRn-s/glory-kb-cal/ics/GLORY.ics</code
         >
       </div>
-      <p style="margin-top: 12px;">
+      <div class="fallback-link">
         Fallback direct link:
         <a href="https://raw.githubusercontent.com/adRn-s/glory-kb-cal/ics/GLORY.ics"
           >https://raw.githubusercontent.com/adRn-s/glory-kb-cal/ics/GLORY.ics</a
         >
-      </p>
+      </div>
+      <div class="copy-row">
+        <input
+          id="ics-url"
+          type="text"
+          readonly
+          value="https://raw.githubusercontent.com/adRn-s/glory-kb-cal/ics/GLORY.ics"
+          aria-label="Direct ICS URL"
+        />
+        <button id="copy-button" type="button">Copy link</button>
+      </div>
+      <div id="copy-status" class="copy-status" aria-live="polite"></div>
     </div>
     <p>Not affiliated with GLORY Kickboxing.</p>
     <p>
       <a href="https://github.com/adRn-s/glory-kb-cal">Source code on GitHub</a>
     </p>
+    <script>
+      const input = document.getElementById("ics-url");
+      const button = document.getElementById("copy-button");
+      const status = document.getElementById("copy-status");
+
+      button.addEventListener("click", async () => {
+        try {
+          await navigator.clipboard.writeText(input.value);
+          status.textContent = "Copied to clipboard.";
+        } catch {
+          input.select();
+          input.setSelectionRange(0, input.value.length);
+          status.textContent = "Select and copy the link manually.";
+        }
+      });
+    </script>
   </body>
 </html>
