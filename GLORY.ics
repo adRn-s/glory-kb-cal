@@ -8,7 +8,7 @@ X-PUBLISHED-TTL:PT1H
 BEGIN:VEVENT
 UID:https://glorykickboxing.com/events/glory-108-last-featherweight-standing
 SUMMARY:GLORY 108 : LAST FEATHERWEIGHT STANDING - GLORY Kickboxing
-DTSTAMP:20260527T053645Z
+DTSTAMP:20260527T091403Z
 DTSTART:20260606T133000Z
 DESCRIPTION:• Featherweight Semifinal 1Featherweight Semifinal 1PetchvsTrin
 	dadeChampionRank#1Featherweight Semifinal 2Featherweight Semifinal 2Haragu
@@ -27,8 +27,43 @@ DESCRIPTION:• Featherweight Semifinal 1Featherweight Semifinal 1PetchvsTrin
 	ahivsPetchyindee-Rank-\n• Catchweight FightAsahivsPetchyindee\n• Catchweig
 	ht FightCatchweight FightYasumotovsWaliuo-Rank-\n• Catchweight FightYasumo
 	tovsWaliuo\n\nhttps://glorykickboxing.com/events/glory-108-last-featherwei
-	ght-standing\n\nAccurate as of May 27\, 5:36 AM UTC
+	ght-standing\n\nAccurate as of May 27\, 9:14 AM UTC
 LOCATION: 13:30 GMT
+DURATION:PT3H
+END:VEVENT
+BEGIN:VEVENT
+UID:https://glorykickboxing.com/events/collision-9
+SUMMARY:COLLISION 9 - GLORY Kickboxing
+DTSTAMP:20260527T091403Z
+DTSTART:20260613T143000Z
+DESCRIPTION:• Heavyweight World Title FightHeavyweight World Title FightKro
+	mahvsCvjetićaninChampionRank#1Light Heavyweight FinalLight Heavyweight Fin
+	alTBDvsTBD-Rank-Heavyweight FightHeavyweight FightPlazibatvsBouzid#3Rank#4
+	Light Heavyweight FightLight Heavyweight FightSelimovićvsHammouche-Rank-Li
+	ght Heavyweight Semifinal 2Light Heavyweight Semifinal 2TBDvsTBD-Rank-Ligh
+	t Heavyweight Semifinal 1Light Heavyweight Semifinal 1TBDvsTBD-Rank-Light 
+	Heavyweight Quarterfinal 4Light Heavyweight Quarterfinal 4BoapeahvsVakhito
+	v-Rank-Light Heavyweight Quarterfinal 3Light Heavyweight Quarterfinal 3Tav
+	aresvsWisse-Rank-Light Heavyweight Quarterfinal 2Light Heavyweight Quarter
+	final 2RajabzadehvsTouchassie-Rank-\n• Heavyweight World Title FightHeavyw
+	eight World Title FightKromahvsCvjetićaninChampionRank#1\n• Heavyweight Wo
+	rld Title FightKromahvsCvjetićanin\n• Light Heavyweight FinalLight Heavywe
+	ight FinalTBDvsTBD-Rank-\n• Light Heavyweight FinalTBDvsTBD\n• Heavyweight
+	 FightHeavyweight FightPlazibatvsBouzid#3Rank#4\n• Heavyweight FightPlazib
+	atvsBouzid\n• Light Heavyweight FightLight Heavyweight FightSelimovićvsHam
+	mouche-Rank-\n• Light Heavyweight FightSelimovićvsHammouche\n• Light Heavy
+	weight Semifinal 2Light Heavyweight Semifinal 2TBDvsTBD-Rank-\n• Light Hea
+	vyweight Semifinal 2TBDvsTBD\n• Light Heavyweight Semifinal 1Light Heavywe
+	ight Semifinal 1TBDvsTBD-Rank-\n• Light Heavyweight Semifinal 1TBDvsTBD\n•
+	 Light Heavyweight Quarterfinal 4Light Heavyweight Quarterfinal 4Boapeahvs
+	Vakhitov-Rank-\n• Light Heavyweight Quarterfinal 4BoapeahvsVakhitov\n• Lig
+	ht Heavyweight Quarterfinal 3Light Heavyweight Quarterfinal 3TavaresvsWiss
+	e-Rank-\n• Light Heavyweight Quarterfinal 3TavaresvsWisse\n• Light Heavywe
+	ight Quarterfinal 2Light Heavyweight Quarterfinal 2RajabzadehvsTouchassie-
+	Rank-\n• Light Heavyweight Quarterfinal 2RajabzadehvsTouchassie\n\nhttps:/
+	/glorykickboxing.com/events/collision-9\n\nAccurate as of May 27\, 9:14 AM
+	 UTC
+LOCATION:Superfight Series 14:30 GMT
 DURATION:PT3H
 END:VEVENT
 END:VCALENDAR
