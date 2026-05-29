@@ -8,7 +8,7 @@ X-PUBLISHED-TTL:PT1H
 BEGIN:VEVENT
 UID:https://glorykickboxing.com/events/glory-108-last-featherweight-standing
 SUMMARY:GLORY 108 : LAST FEATHERWEIGHT STANDING - GLORY Kickboxing
-DTSTAMP:20260529T005434Z
+DTSTAMP:20260529T053125Z
 DTSTART:20260606T060000Z
 DESCRIPTION:• Featherweight Semifinal 1Featherweight Semifinal 1PetchvsTrin
 	dadeChampionRank#1Featherweight Semifinal 2Featherweight Semifinal 2Haragu
@@ -27,14 +27,14 @@ DESCRIPTION:• Featherweight Semifinal 1Featherweight Semifinal 1PetchvsTrin
 	ahivsPetchyindee-Rank-\n• Catchweight FightAsahivsPetchyindee\n• Catchweig
 	ht FightCatchweight FightYasumotovsWaliuo-Rank-\n• Catchweight FightYasumo
 	tovsWaliuo\n\nhttps://glorykickboxing.com/events/glory-108-last-featherwei
-	ght-standing\n\nAccurate as of May 29\, 12:54 AM UTC
+	ght-standing\n\nAccurate as of May 29\, 5:31 AM UTC
 LOCATION: 06:00 GMT
 DURATION:PT3H
 END:VEVENT
 BEGIN:VEVENT
 UID:https://glorykickboxing.com/events/collision-9
 SUMMARY:COLLISION 9 - GLORY Kickboxing
-DTSTAMP:20260529T005434Z
+DTSTAMP:20260529T053125Z
 DTSTART:20260613T143000Z
 DESCRIPTION:• Heavyweight World Title FightHeavyweight World Title FightKro
 	mahvsCvjetićaninChampionRank#1Light Heavyweight FinalLight Heavyweight Fin
@@ -61,8 +61,8 @@ DESCRIPTION:• Heavyweight World Title FightHeavyweight World Title FightKro
 	e-Rank-\n• Light Heavyweight Quarterfinal 3TavaresvsWisse\n• Light Heavywe
 	ight Quarterfinal 2Light Heavyweight Quarterfinal 2RajabzadehvsTouchassie-
 	Rank-\n• Light Heavyweight Quarterfinal 2RajabzadehvsTouchassie\n\nhttps:/
-	/glorykickboxing.com/events/collision-9\n\nAccurate as of May 29\, 12:54 A
-	M UTC
+	/glorykickboxing.com/events/collision-9\n\nAccurate as of May 29\, 5:31 AM
+	 UTC
 LOCATION:Superfight Series 14:30 GMT
 DURATION:PT3H
 END:VEVENT
