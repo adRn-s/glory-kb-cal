@@ -8,10 +8,10 @@ X-PUBLISHED-TTL:PT1H
 BEGIN:VEVENT
 UID:https://glorykickboxing.com/news/predict-the-grand-prix-and-win-prizes
 SUMMARY:COLLISION 9 Light Heavyweight Grand Prix for a
-DTSTAMP:20260604T092413Z
+DTSTAMP:20260604T131056Z
 DTSTART:20260613T000000Z
 DESCRIPTION:https://glorykickboxing.com/news/predict-the-grand-prix-and-win
-	-prizes\n\nAccurate as of Jun 4\, 9:24 AM UTC
+	-prizes\n\nAccurate as of Jun 4\, 1:10 PM UTC
 DURATION:PT3H
 END:VEVENT
 END:VCALENDAR
