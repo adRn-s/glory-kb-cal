@@ -8,10 +8,10 @@ X-PUBLISHED-TTL:PT1H
 BEGIN:VEVENT
 UID:https://glorykickboxing.com/news/glory-108-last-featherweight-standing-finals-weigh-in-results
 SUMMARY:GLORY 108
-DTSTAMP:20260606T123229Z
+DTSTAMP:20260606T162804Z
 DTSTART:20270606T000000Z
 DESCRIPTION:https://glorykickboxing.com/news/glory-108-last-featherweight-s
-	tanding-finals-weigh-in-results\n\nAccurate as of Jun 6\, 12:32 PM UTC
+	tanding-finals-weigh-in-results\n\nAccurate as of Jun 6\, 4:28 PM UTC
 LOCATION:GLORY
 DURATION:PT3H
 END:VEVENT
