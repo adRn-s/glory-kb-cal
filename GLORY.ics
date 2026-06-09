@@ -8,10 +8,10 @@ X-PUBLISHED-TTL:PT1H
 BEGIN:VEVENT
 UID:https://glorykickboxing.com/news/glory-109-set-to-take-place-september-5-in-rotterdam
 SUMMARY:GLORY 109 set to take place September 5
-DTSTAMP:20260609T130539Z
+DTSTAMP:20260609T165828Z
 DTSTART:20260613T000000Z
 DESCRIPTION:https://glorykickboxing.com/news/glory-109-set-to-take-place-se
-	ptember-5-in-rotterdam\n\nAccurate as of Jun 9\, 1:05 PM UTC
+	ptember-5-in-rotterdam\n\nAccurate as of Jun 9\, 4:58 PM UTC
 LOCATION:RotterdamOfficial Releasea
 DURATION:PT3H
 END:VEVENT
