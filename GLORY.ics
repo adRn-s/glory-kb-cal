@@ -8,10 +8,10 @@ X-PUBLISHED-TTL:PT1H
 BEGIN:VEVENT
 UID:https://glorykickboxing.com/news/glory-collision-9-weigh-in-results
 SUMMARY:COLLISION 9 Weigh-In Results Back to newsGLORY
-DTSTAMP:20260614T005831Z
+DTSTAMP:20260614T053825Z
 DTSTART:20270613T000000Z
 DESCRIPTION:https://glorykickboxing.com/news/glory-collision-9-weigh-in-res
-	ults\n\nAccurate as of Jun 14\, 12:58 AM UTC
+	ults\n\nAccurate as of Jun 14\, 5:38 AM UTC
 LOCATION:COLLISION
 DURATION:PT3H
 END:VEVENT
