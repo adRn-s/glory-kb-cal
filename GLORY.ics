@@ -6,29 +6,13 @@ METHOD:PUBLISH
 X-WR-CALNAME:GLORY Kickboxing
 X-PUBLISHED-TTL:PT1H
 BEGIN:VEVENT
-UID:https://glorykickboxing.com/events/glory-109
-SUMMARY:GLORY 109 - GLORY Kickboxing
-DTSTAMP:20260624T091135Z
-DTSTART:20260905T150000Z
-DESCRIPTION:• Welterweight World Title FightWelterweight World Title FightK
-	wasivsHristovChampionRank#1Heavyweight FightHeavyweight FightOsarovsZimmer
-	man#2Rank-Welterweight Proving GroundsWelterweight Proving GroundsLandmanv
-	sBoutasaa-Rank-Welterweight Proving GroundsWelterweight Proving GroundsHod
-	ukvsTodorovic-Rank-Welterweight Proving GroundsWelterweight Proving Ground
-	sKrajinovićvsSamperi#4Rank-Welterweight Proving GroundsWelterweight Provin
-	g GroundsKnauvsHamdi-Rank-\n• Welterweight World Title FightWelterweight W
-	orld Title FightKwasivsHristovChampionRank#1\n• Welterweight World Title F
-	ightKwasivsHristov\n• Heavyweight FightHeavyweight FightOsarovsZimmerman#2
-	Rank-\n• Heavyweight FightOsarovsZimmerman\n• Welterweight Proving Grounds
-	Welterweight Proving GroundsLandmanvsBoutasaa-Rank-\n• Welterweight Provin
-	g GroundsLandmanvsBoutasaa\n• Welterweight Proving GroundsWelterweight Pro
-	ving GroundsHodukvsTodorovic-Rank-\n• Welterweight Proving GroundsHodukvsT
-	odorovic\n• Welterweight Proving GroundsWelterweight Proving GroundsKrajin
-	ovićvsSamperi#4Rank-\n• Welterweight Proving GroundsKrajinovićvsSamperi\n•
-	 Welterweight Proving GroundsWelterweight Proving GroundsKnauvsHamdi-Rank-
-	\n• Welterweight Proving GroundsKnauvsHamdi\n\nhttps://glorykickboxing.com
-	/events/glory-109\n\nAccurate as of Jun 24\, 9:11 AM UTC
-LOCATION:Superfight Series 15:00 GMT
+UID:https://glorykickboxing.com/news/glory-109-tickets-on-sale-now
+SUMMARY:GLORY 109 Tickets on Sale NOW Back to
+DTSTAMP:20260624T125008Z
+DTSTART:20260905T000000Z
+DESCRIPTION:https://glorykickboxing.com/news/glory-109-tickets-on-sale-now\
+	n\nAccurate as of Jun 24\, 12:50 PM UTC
+LOCATION:Rotterdam
 DURATION:PT3H
 END:VEVENT
 END:VCALENDAR
