@@ -8,10 +8,10 @@ X-PUBLISHED-TTL:PT1H
 BEGIN:VEVENT
 UID:https://glorykickboxing.com/news/glory-ringfight-promotions-collaborate-on-glory-rivals
 SUMMARY:COLLISION 9 took place in early June at
-DTSTAMP:20260701T091256Z
+DTSTAMP:20260701T130201Z
 DTSTART:20260905T000000Z
 DESCRIPTION:https://glorykickboxing.com/news/glory-ringfight-promotions-col
-	laborate-on-glory-rivals\n\nAccurate as of Jul 1\, 9:12 AM UTC
+	laborate-on-glory-rivals\n\nAccurate as of Jul 1\, 1:02 PM UTC
 LOCATION:GLORY
 DURATION:PT3H
 END:VEVENT
