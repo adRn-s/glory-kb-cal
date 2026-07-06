@@ -8,7 +8,7 @@ X-PUBLISHED-TTL:PT1H
 BEGIN:VEVENT
 UID:https://glorykickboxing.com/events/glory-109
 SUMMARY:GLORY 109 - GLORY Kickboxing
-DTSTAMP:20260706T181048Z
+DTSTAMP:20260706T212842Z
 DTSTART:20260905T150000Z
 DESCRIPTION:• Welterweight World Title FightWelterweight World Title FightK
 	wasivsHristovChampionRank#1Heavyweight FightHeavyweight FightOsarovsZimmer
@@ -38,14 +38,14 @@ DESCRIPTION:• Welterweight World Title FightWelterweight World Title FightK
 	ara-Rank-\n• Welterweight Proving GroundsMenshikovvsCamara\n• Middleweight
 	 FightMiddleweight FightHadarvsTiebe-Rank-\n• Middleweight FightHadarvsTie
 	be\n\nhttps://glorykickboxing.com/events/glory-109\n\nAccurate as of Jul 6
-	\, 6:11 PM UTC
+	\, 9:28 PM UTC
 LOCATION:Superfight Series 15:00 GMT
 DURATION:PT3H
 END:VEVENT
 BEGIN:VEVENT
 UID:https://glorykickboxing.com/events/collision-10
 SUMMARY:COLLISION 10 - GLORY Kickboxing
-DTSTAMP:20260706T181048Z
+DTSTAMP:20260706T212842Z
 DTSTART:20261212T170000Z
 DESCRIPTION:• Heavyweight World Title FightHeavyweight World Title FightKro
 	mahvsPlazibatChampionRank#1Light Heavyweight World Title FightLight Heavyw
@@ -54,7 +54,7 @@ DESCRIPTION:• Heavyweight World Title FightHeavyweight World Title FightKro
 	n• Heavyweight World Title FightKromahvsPlazibat\n• Light Heavyweight Worl
 	d Title FightLight Heavyweight World Title FightTouchassievsKhbabezChampio
 	nRank-\n• Light Heavyweight World Title FightTouchassievsKhbabez\n\nhttps:
-	//glorykickboxing.com/events/collision-10\n\nAccurate as of Jul 6\, 6:11 P
+	//glorykickboxing.com/events/collision-10\n\nAccurate as of Jul 6\, 9:28 P
 	M UTC
 LOCATION:Superfight Series 17:00 GMT
 DURATION:PT3H
