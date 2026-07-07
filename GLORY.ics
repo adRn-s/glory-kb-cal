@@ -8,10 +8,10 @@ X-PUBLISHED-TTL:PT1H
 BEGIN:VEVENT
 UID:https://glorykickboxing.com/news/touchassie-vs-khbabez-official-for-collision-10-on-december-12
 SUMMARY:COLLISION 10 on December 12 Back to newsTouchassie
-DTSTAMP:20260707T143220Z
+DTSTAMP:20260707T175851Z
 DTSTART:20261212T000000Z
 DESCRIPTION:https://glorykickboxing.com/news/touchassie-vs-khbabez-official
-	-for-collision-10-on-december-12\n\nAccurate as of Jul 7\, 2:32 PM UTC
+	-for-collision-10-on-december-12\n\nAccurate as of Jul 7\, 5:58 PM UTC
 LOCATION:Arnhem
 DURATION:PT3H
 END:VEVENT
