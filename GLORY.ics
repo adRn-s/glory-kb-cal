@@ -6,13 +6,59 @@ METHOD:PUBLISH
 X-WR-CALNAME:GLORY Kickboxing
 X-PUBLISHED-TTL:PT1H
 BEGIN:VEVENT
-UID:https://glorykickboxing.com/news/touchassie-vs-khbabez-official-for-collision-10-on-december-12
-SUMMARY:COLLISION 10 on December 12 Back to newsTouchassie
-DTSTAMP:20260709T073624Z
-DTSTART:20261212T000000Z
-DESCRIPTION:https://glorykickboxing.com/news/touchassie-vs-khbabez-official
-	-for-collision-10-on-december-12\n\nAccurate as of Jul 9\, 7:36 AM UTC
-LOCATION:Arnhem
+UID:https://glorykickboxing.com/events/glory-109
+SUMMARY:GLORY 109 - GLORY Kickboxing
+DTSTAMP:20260709T105909Z
+DTSTART:20260905T150000Z
+DESCRIPTION:• Welterweight World Title FightWelterweight World Title FightK
+	wasivsHristovChampionRank#1Heavyweight FightHeavyweight FightOsarovsZimmer
+	man#2Rank-Welterweight Proving GroundsWelterweight Proving GroundsLandmanv
+	sBoutasaa-Rank-Welterweight Proving GroundsWelterweight Proving GroundsOul
+	ed-ChaibvsBaya-Rank-Welterweight Proving GroundsWelterweight Proving Groun
+	dsHodukvsTodorovic-Rank-Welterweight Proving GroundsWelterweight Proving G
+	roundsKrajinovićvsSamperi#4Rank-Welterweight Proving GroundsWelterweight P
+	roving GroundsKnauvsHamdi-Rank-Welterweight Proving GroundsWelterweight Pr
+	oving GroundsLivadarivsSabri-Rank-Welterweight Proving GroundsWelterweight
+	 Proving GroundsMenshikovvsCamara-Rank-Middleweight FightMiddleweight Figh
+	tHadarvsTiebe-Rank-Light Heavyweight FightLight Heavyweight FightLivinus O
+	manivsIsaev-Rank-\n• Welterweight World Title FightWelterweight World Titl
+	e FightKwasivsHristovChampionRank#1\n• Welterweight World Title FightKwasi
+	vsHristov\n• Heavyweight FightHeavyweight FightOsarovsZimmerman#2Rank-\n• 
+	Heavyweight FightOsarovsZimmerman\n• Welterweight Proving GroundsWelterwei
+	ght Proving GroundsLandmanvsBoutasaa-Rank-\n• Welterweight Proving Grounds
+	LandmanvsBoutasaa\n• Welterweight Proving GroundsWelterweight Proving Grou
+	ndsOuled-ChaibvsBaya-Rank-\n• Welterweight Proving GroundsOuled-ChaibvsBay
+	a\n• Welterweight Proving GroundsWelterweight Proving GroundsHodukvsTodoro
+	vic-Rank-\n• Welterweight Proving GroundsHodukvsTodorovic\n• Welterweight 
+	Proving GroundsWelterweight Proving GroundsKrajinovićvsSamperi#4Rank-\n• W
+	elterweight Proving GroundsKrajinovićvsSamperi\n• Welterweight Proving Gro
+	undsWelterweight Proving GroundsKnauvsHamdi-Rank-\n• Welterweight Proving 
+	GroundsKnauvsHamdi\n• Welterweight Proving GroundsWelterweight Proving Gro
+	undsLivadarivsSabri-Rank-\n• Welterweight Proving GroundsLivadarivsSabri\n
+	• Welterweight Proving GroundsWelterweight Proving GroundsMenshikovvsCamar
+	a-Rank-\n• Welterweight Proving GroundsMenshikovvsCamara\n• Middleweight F
+	ightMiddleweight FightHadarvsTiebe-Rank-\n• Middleweight FightHadarvsTiebe
+	\n• Light Heavyweight FightLight Heavyweight FightLivinus OmanivsIsaev-Ran
+	k-\n• Light Heavyweight FightLivinus OmanivsIsaev\n\nhttps://glorykickboxi
+	ng.com/events/glory-109\n\nAccurate as of Jul 9\, 10:59 AM UTC
+LOCATION:Superfight Series 15:00 GMT
+DURATION:PT3H
+END:VEVENT
+BEGIN:VEVENT
+UID:https://glorykickboxing.com/events/collision-10
+SUMMARY:COLLISION 10 - GLORY Kickboxing
+DTSTAMP:20260709T105909Z
+DTSTART:20261212T170000Z
+DESCRIPTION:• Heavyweight World Title FightHeavyweight World Title FightKro
+	mahvsPlazibatChampionRank#1Light Heavyweight World Title FightLight Heavyw
+	eight World Title FightTouchassievsKhbabezChampionRank-\n• Heavyweight Wor
+	ld Title FightHeavyweight World Title FightKromahvsPlazibatChampionRank#1\
+	n• Heavyweight World Title FightKromahvsPlazibat\n• Light Heavyweight Worl
+	d Title FightLight Heavyweight World Title FightTouchassievsKhbabezChampio
+	nRank-\n• Light Heavyweight World Title FightTouchassievsKhbabez\n\nhttps:
+	//glorykickboxing.com/events/collision-10\n\nAccurate as of Jul 9\, 10:59 
+	AM UTC
+LOCATION:Superfight Series 17:00 GMT
 DURATION:PT3H
 END:VEVENT
 END:VCALENDAR
