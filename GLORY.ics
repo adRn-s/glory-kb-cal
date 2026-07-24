@@ -6,13 +6,52 @@ METHOD:PUBLISH
 X-WR-CALNAME:GLORY Kickboxing
 X-PUBLISHED-TTL:PT1H
 BEGIN:VEVENT
-UID:https://glorykickboxing.com/news/glory-109-fight-card-finalised
-SUMMARY:GLORY 109 Fight Card Finalised Back to newsGLORY
-DTSTAMP:20260724T173705Z
-DTSTART:20260905T000000Z
-DESCRIPTION:https://glorykickboxing.com/news/glory-109-fight-card-finalised
-	\n\nAccurate as of Jul 24\, 5:37 PM UTC
-LOCATION:Rotterdam
+UID:https://glorykickboxing.com/events/glory-109
+SUMMARY:GLORY 109 - GLORY Kickboxing
+DTSTAMP:20260724T210235Z
+DTSTART:20260905T150000Z
+DESCRIPTION:• Welterweight World Title FightWelterweight World Title FightK
+	wasivsHristovChampionRank#1Heavyweight FightHeavyweight FightOsarovsZimmer
+	man#2Rank-Welterweight Proving GroundsWelterweight Proving GroundsLandmanv
+	sBoutasaa-Rank-Welterweight FightWelterweight FightSnovsOvermeer#3Rank-Wel
+	terweight Proving GroundsWelterweight Proving GroundsMenshikovvsCamara-Ran
+	k-Welterweight Proving GroundsWelterweight Proving GroundsKrajinovićvsSamp
+	eri#4Rank-Light Heavyweight FightLight Heavyweight FightLivinus OmanivsIsa
+	ev-Rank-Middleweight FightMiddleweight FightHadarvsTiebe-Rank-\n• Welterwe
+	ight World Title FightWelterweight World Title FightKwasivsHristovChampion
+	Rank#1\n• Welterweight World Title FightKwasivsHristov\n• Heavyweight Figh
+	tHeavyweight FightOsarovsZimmerman#2Rank-\n• Heavyweight FightOsarovsZimme
+	rman\n• Welterweight Proving GroundsWelterweight Proving GroundsLandmanvsB
+	outasaa-Rank-\n• Welterweight Proving GroundsLandmanvsBoutasaa\n• Welterwe
+	ight FightWelterweight FightSnovsOvermeer#3Rank-\n• Welterweight FightSnov
+	sOvermeer\n• Welterweight Proving GroundsWelterweight Proving GroundsMensh
+	ikovvsCamara-Rank-\n• Welterweight Proving GroundsMenshikovvsCamara\n• Wel
+	terweight Proving GroundsWelterweight Proving GroundsKrajinovićvsSamperi#4
+	Rank-\n• Welterweight Proving GroundsKrajinovićvsSamperi\n• Light Heavywei
+	ght FightLight Heavyweight FightLivinus OmanivsIsaev-Rank-\n• Light Heavyw
+	eight FightLivinus OmanivsIsaev\n• Middleweight FightMiddleweight FightHad
+	arvsTiebe-Rank-\n• Middleweight FightHadarvsTiebe\n\nhttps://glorykickboxi
+	ng.com/events/glory-109\n\nAccurate as of Jul 24\, 9:02 PM UTC
+LOCATION:Superfight Series 15:00 GMT
+DURATION:PT3H
+END:VEVENT
+BEGIN:VEVENT
+UID:https://glorykickboxing.com/events/collision-10
+SUMMARY:COLLISION 10 - GLORY Kickboxing
+DTSTAMP:20260724T210235Z
+DTSTART:20261212T170000Z
+DESCRIPTION:• Heavyweight World Title FightHeavyweight World Title FightKro
+	mahvsPlazibatChampionRank#1Light Heavyweight World Title FightLight Heavyw
+	eight World Title FightTouchassievsKhbabezChampionRank-Light Heavyweight F
+	ightLight Heavyweight FightWissevsCvjetićanin#2Rank-\n• Heavyweight World 
+	Title FightHeavyweight World Title FightKromahvsPlazibatChampionRank#1\n• 
+	Heavyweight World Title FightKromahvsPlazibat\n• Light Heavyweight World T
+	itle FightLight Heavyweight World Title FightTouchassievsKhbabezChampionRa
+	nk-\n• Light Heavyweight World Title FightTouchassievsKhbabez\n• Light Hea
+	vyweight FightLight Heavyweight FightWissevsCvjetićanin#2Rank-\n• Light He
+	avyweight FightWissevsCvjetićanin\n\nhttps://glorykickboxing.com/events/co
+	llision-10\n\nAccurate as of Jul 24\, 9:02 PM UTC
+LOCATION:Superfight Series 17:00 GMT
 DURATION:PT3H
 END:VEVENT
 END:VCALENDAR
