@@ -8,7 +8,7 @@ X-PUBLISHED-TTL:PT1H
 BEGIN:VEVENT
 UID:https://glorykickboxing.com/events/glory-109
 SUMMARY:GLORY 109 - GLORY Kickboxing
-DTSTAMP:20260801T131827Z
+DTSTAMP:20260801T165833Z
 DTSTART:20260905T150000Z
 DESCRIPTION:• Welterweight World Title FightWelterweight World Title FightK
 	wasivsHristovChampionRank#1Heavyweight FightHeavyweight FightOsarovsZimmer
@@ -31,24 +31,24 @@ DESCRIPTION:• Welterweight World Title FightWelterweight World Title FightK
 	ght FightLight Heavyweight FightLivinus OmanivsIsaev-Rank-\n• Light Heavyw
 	eight FightLivinus OmanivsIsaev\n• Middleweight FightMiddleweight FightHad
 	arvsTiebe-Rank-\n• Middleweight FightHadarvsTiebe\n\nhttps://glorykickboxi
-	ng.com/events/glory-109\n\nAccurate as of Aug 1\, 1:18 PM UTC
+	ng.com/events/glory-109\n\nAccurate as of Aug 1\, 4:58 PM UTC
 LOCATION:Superfight Series 15:00 GMT
 DURATION:PT3H
 END:VEVENT
 BEGIN:VEVENT
 UID:https://glorykickboxing.com/events/glory-110
 SUMMARY:GLORY 110 - GLORY Kickboxing
-DTSTAMP:20260801T131827Z
+DTSTAMP:20260801T165833Z
 DTSTART:20261017T000000Z
 DESCRIPTION:https://glorykickboxing.com/events/glory-110\n\nAccurate as of 
-	Aug 1\, 1:18 PM UTC
+	Aug 1\, 4:58 PM UTC
 LOCATION: 16:00 GMT
 DURATION:PT3H
 END:VEVENT
 BEGIN:VEVENT
 UID:https://glorykickboxing.com/events/collision-10
 SUMMARY:COLLISION 10 - GLORY Kickboxing
-DTSTAMP:20260801T131827Z
+DTSTAMP:20260801T165833Z
 DTSTART:20261212T170000Z
 DESCRIPTION:• Heavyweight World Title FightHeavyweight World Title FightKro
 	mahvsPlazibatChampionRank#1Light Heavyweight World Title FightLight Heavyw
@@ -60,7 +60,7 @@ DESCRIPTION:• Heavyweight World Title FightHeavyweight World Title FightKro
 	nk-\n• Light Heavyweight World Title FightTouchassievsKhbabez\n• Light Hea
 	vyweight FightLight Heavyweight FightWissevsCvjetićanin#2Rank-\n• Light He
 	avyweight FightWissevsCvjetićanin\n\nhttps://glorykickboxing.com/events/co
-	llision-10\n\nAccurate as of Aug 1\, 1:18 PM UTC
+	llision-10\n\nAccurate as of Aug 1\, 4:58 PM UTC
 LOCATION:Superfight Series 17:00 GMT
 DURATION:PT3H
 END:VEVENT
