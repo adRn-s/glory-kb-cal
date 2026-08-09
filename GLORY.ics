@@ -8,7 +8,7 @@ X-PUBLISHED-TTL:PT1H
 BEGIN:VEVENT
 UID:https://glorykickboxing.com/events/glory-109
 SUMMARY:GLORY 109 - GLORY Kickboxing
-DTSTAMP:20260809T084123Z
+DTSTAMP:20260809T124734Z
 DTSTART:20260905T150000Z
 DESCRIPTION:• Welterweight World Title FightWelterweight World Title FightK
 	wasivsHristovChampionRank#1Heavyweight FightHeavyweight FightOsarovsZimmer
@@ -31,14 +31,14 @@ DESCRIPTION:• Welterweight World Title FightWelterweight World Title FightK
 	ght FightLight Heavyweight FightLivinus OmanivsIsaev-Rank-\n• Light Heavyw
 	eight FightLivinus OmanivsIsaev\n• Middleweight FightMiddleweight FightHad
 	arvsTiebe-Rank-\n• Middleweight FightHadarvsTiebe\n\nhttps://glorykickboxi
-	ng.com/events/glory-109\n\nAccurate as of Aug 9\, 8:41 AM UTC
+	ng.com/events/glory-109\n\nAccurate as of Aug 9\, 12:47 PM UTC
 LOCATION:Superfight Series 15:00 GMT
 DURATION:PT3H
 END:VEVENT
 BEGIN:VEVENT
 UID:https://glorykickboxing.com/events/glory-110
 SUMMARY:GLORY 110 - GLORY Kickboxing
-DTSTAMP:20260809T084123Z
+DTSTAMP:20260809T124734Z
 DTSTART:20261017T160000Z
 DESCRIPTION:• Featherweight World Title FightFeatherweight World Title Figh
 	tTrindadevsDemirkapu#1Rank#4Heavyweight FightHeavyweight FightBchirivsMahi
@@ -46,14 +46,14 @@ DESCRIPTION:• Featherweight World Title FightFeatherweight World Title Figh
 	ightTrindadevsDemirkapu#1Rank#4\n• Featherweight World Title FightTrindade
 	vsDemirkapu\n• Heavyweight FightHeavyweight FightBchirivsMahieddine-Rank-\
 	n• Heavyweight FightBchirivsMahieddine\n\nhttps://glorykickboxing.com/even
-	ts/glory-110\n\nAccurate as of Aug 9\, 8:41 AM UTC
+	ts/glory-110\n\nAccurate as of Aug 9\, 12:47 PM UTC
 LOCATION:Superfight Series 16:00 GMT
 DURATION:PT3H
 END:VEVENT
 BEGIN:VEVENT
 UID:https://glorykickboxing.com/events/collision-10
 SUMMARY:COLLISION 10 - GLORY Kickboxing
-DTSTAMP:20260809T084123Z
+DTSTAMP:20260809T124734Z
 DTSTART:20261212T170000Z
 DESCRIPTION:• Heavyweight World Title FightHeavyweight World Title FightKro
 	mahvsPlazibatChampionRank#1Light Heavyweight World Title FightLight Heavyw
@@ -65,7 +65,7 @@ DESCRIPTION:• Heavyweight World Title FightHeavyweight World Title FightKro
 	nk-\n• Light Heavyweight World Title FightTouchassievsKhbabez\n• Light Hea
 	vyweight FightLight Heavyweight FightWissevsCvjetićanin#2Rank-\n• Light He
 	avyweight FightWissevsCvjetićanin\n\nhttps://glorykickboxing.com/events/co
-	llision-10\n\nAccurate as of Aug 9\, 8:41 AM UTC
+	llision-10\n\nAccurate as of Aug 9\, 12:47 PM UTC
 LOCATION:Superfight Series 17:00 GMT
 DURATION:PT3H
 END:VEVENT
