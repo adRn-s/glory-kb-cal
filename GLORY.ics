@@ -8,7 +8,7 @@ X-PUBLISHED-TTL:PT1H
 BEGIN:VEVENT
 UID:https://glorykickboxing.com/events/glory-109
 SUMMARY:GLORY 109 - GLORY Kickboxing
-DTSTAMP:20260814T015123Z
+DTSTAMP:20260814T053701Z
 DTSTART:20260905T150000Z
 DESCRIPTION:• Welterweight World Title FightWelterweight World Title FightK
 	wasivsHristovChampionRank#1Heavyweight FightHeavyweight FightOsarovsZimmer
@@ -31,14 +31,14 @@ DESCRIPTION:• Welterweight World Title FightWelterweight World Title FightK
 	ght FightLight Heavyweight FightLivinus OmanivsIsaev-Rank-\n• Light Heavyw
 	eight FightLivinus OmanivsIsaev\n• Middleweight FightMiddleweight FightHad
 	arvsTiebe-Rank-\n• Middleweight FightHadarvsTiebe\n\nhttps://glorykickboxi
-	ng.com/events/glory-109\n\nAccurate as of Aug 14\, 1:51 AM UTC
+	ng.com/events/glory-109\n\nAccurate as of Aug 14\, 5:37 AM UTC
 LOCATION:Superfight Series 15:00 GMT
 DURATION:PT3H
 END:VEVENT
 BEGIN:VEVENT
 UID:https://glorykickboxing.com/events/glory-110
 SUMMARY:GLORY 110 - GLORY Kickboxing
-DTSTAMP:20260814T015123Z
+DTSTAMP:20260814T053701Z
 DTSTART:20261017T160000Z
 DESCRIPTION:• Featherweight World Title FightFeatherweight World Title Figh
 	tTrindadevsDemirkapu#1Rank#4Heavyweight FightHeavyweight FightBchirivsMahi
@@ -54,7 +54,7 @@ DESCRIPTION:• Featherweight World Title FightFeatherweight World Title Figh
 	ght FightNnamadimvsLatifi\n• Heavyweight FightHeavyweight FightGashivsKadd
 	ani-Rank-\n• Heavyweight FightGashivsKaddani\n• Welterweight FightWelterwe
 	ight FightVerelstvsQose-Rank-\n• Welterweight FightVerelstvsQose\n\nhttps:
-	//glorykickboxing.com/events/glory-110\n\nAccurate as of Aug 14\, 1:51 AM 
+	//glorykickboxing.com/events/glory-110\n\nAccurate as of Aug 14\, 5:37 AM 
 	UTC
 LOCATION:Superfight Series 16:00 GMT
 DURATION:PT3H
@@ -62,7 +62,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:https://glorykickboxing.com/events/collision-10
 SUMMARY:COLLISION 10 - GLORY Kickboxing
-DTSTAMP:20260814T015123Z
+DTSTAMP:20260814T053701Z
 DTSTART:20261212T170000Z
 DESCRIPTION:• Heavyweight World Title FightHeavyweight World Title FightKro
 	mahvsPlazibatChampionRank#1Light Heavyweight World Title FightLight Heavyw
@@ -76,7 +76,7 @@ DESCRIPTION:• Heavyweight World Title FightHeavyweight World Title FightKro
 	Light Heavyweight FightWissevsCvjetićanin#2Rank-\n• Light Heavyweight Figh
 	tWissevsCvjetićanin\n• Heavyweight FightHeavyweight FightRajabzadehvsKarim
 	ian-Rank-\n• Heavyweight FightRajabzadehvsKarimian\n\nhttps://glorykickbox
-	ing.com/events/collision-10\n\nAccurate as of Aug 14\, 1:51 AM UTC
+	ing.com/events/collision-10\n\nAccurate as of Aug 14\, 5:37 AM UTC
 LOCATION:Superfight Series 17:00 GMT
 DURATION:PT3H
 END:VEVENT
