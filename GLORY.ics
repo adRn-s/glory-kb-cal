@@ -8,7 +8,7 @@ X-PUBLISHED-TTL:PT1H
 BEGIN:VEVENT
 UID:https://glorykickboxing.com/events/glory-109
 SUMMARY:GLORY 109 - GLORY Kickboxing
-DTSTAMP:20260815T010938Z
+DTSTAMP:20260815T042912Z
 DTSTART:20260905T150000Z
 DESCRIPTION:• Welterweight World Title FightWelterweight World Title FightK
 	wasivsHristovChampionRank#1Heavyweight FightHeavyweight FightOsarovsZimmer
@@ -31,14 +31,14 @@ DESCRIPTION:• Welterweight World Title FightWelterweight World Title FightK
 	ght FightLight Heavyweight FightLivinus OmanivsIsaev-Rank-\n• Light Heavyw
 	eight FightLivinus OmanivsIsaev\n• Middleweight FightMiddleweight FightHad
 	arvsTiebe-Rank-\n• Middleweight FightHadarvsTiebe\n\nhttps://glorykickboxi
-	ng.com/events/glory-109\n\nAccurate as of Aug 15\, 1:09 AM UTC
+	ng.com/events/glory-109\n\nAccurate as of Aug 15\, 4:29 AM UTC
 LOCATION:Superfight Series 15:00 GMT
 DURATION:PT3H
 END:VEVENT
 BEGIN:VEVENT
 UID:https://glorykickboxing.com/events/glory-110
 SUMMARY:GLORY 110 - GLORY Kickboxing
-DTSTAMP:20260815T010938Z
+DTSTAMP:20260815T042912Z
 DTSTART:20261017T160000Z
 DESCRIPTION:• Featherweight World Title FightFeatherweight World Title Figh
 	tTrindadevsDemirkapu#1Rank#4Heavyweight FightHeavyweight FightBchirivsMahi
@@ -56,8 +56,8 @@ DESCRIPTION:• Featherweight World Title FightFeatherweight World Title Figh
 	ddleweight FightNnamadimvsLatifi\n• Heavyweight FightHeavyweight FightGash
 	ivsKaddani-Rank-\n• Heavyweight FightGashivsKaddani\n• Welterweight FightW
 	elterweight FightVerelstvsQose-Rank-\n• Welterweight FightVerelstvsQose\n\
-	nhttps://glorykickboxing.com/events/glory-110\n\nAccurate as of Aug 15\, 1
-	:09 AM UTC
+	nhttps://glorykickboxing.com/events/glory-110\n\nAccurate as of Aug 15\, 4
+	:29 AM UTC
 LOCATION:Superfight Series 16:00 GMT
 DURATION:PT3H
 END:VEVENT
