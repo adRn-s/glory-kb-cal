@@ -8,7 +8,7 @@ X-PUBLISHED-TTL:PT1H
 BEGIN:VEVENT
 UID:https://glorykickboxing.com/events/glory-109
 SUMMARY:GLORY 109 - GLORY Kickboxing
-DTSTAMP:20260820T124630Z
+DTSTAMP:20260820T163349Z
 DTSTART:20260905T150000Z
 DESCRIPTION:• Welterweight World Title FightWelterweight World Title FightK
 	wasivsHristovChampionRank#1Heavyweight FightHeavyweight FightOsarovsZimmer
@@ -31,14 +31,53 @@ DESCRIPTION:• Welterweight World Title FightWelterweight World Title FightK
 	ght FightLight Heavyweight FightLivinus OmanivsIsaev-Rank-\n• Light Heavyw
 	eight FightLivinus OmanivsIsaev\n• Middleweight FightMiddleweight FightHad
 	arvsTiebe-Rank-\n• Middleweight FightHadarvsTiebe\n\nhttps://glorykickboxi
-	ng.com/events/glory-109\n\nAccurate as of Aug 20\, 12:46 PM UTC
+	ng.com/events/glory-109\n\nAccurate as of Aug 20\, 4:34 PM UTC
 LOCATION:Superfight Series 15:00 GMT
+DURATION:PT3H
+END:VEVENT
+BEGIN:VEVENT
+UID:https://glorykickboxing.com/events/glory-110
+SUMMARY:GLORY 110 - GLORY Kickboxing
+DTSTAMP:20260820T163349Z
+DTSTART:20261017T160000Z
+DESCRIPTION:• Featherweight World Title FightFeatherweight World Title Figh
+	tTrindadevsDemirkapu#1Rank#4Light Heavyweight FightLight Heavyweight Fight
+	BoapeahvsNechita-Rank-Featherweight FightFeatherweight FightPeposhivsMonte
+	iro#3Rank-Heavyweight FightHeavyweight FightBchirivsMahieddine-Rank-Heavyw
+	eight FightHeavyweight FightKhachabvsIancu-Rank-Heavyweight FightHeavyweig
+	ht FightLaïdounivsZeghad#5Rank-Middleweight FightMiddleweight FightAkingba
+	devsJanssen-Rank-Middleweight FightMiddleweight FightNnamadimvsLatifi-Rank
+	-Heavyweight FightHeavyweight FightGashivsKaddani-Rank-Welterweight FightW
+	elterweight FightVerelstvsQose-Rank-Featherweight FightFeatherweight Fight
+	IbrahimivsEl Boujadaini-Rank-Light Heavyweight FightLight Heavyweight Figh
+	tGautiervsAzzouzi-Rank-Welterweight FightWelterweight FightMoukpwovsBouhan
+	i-Rank-\n• Featherweight World Title FightFeatherweight World Title FightT
+	rindadevsDemirkapu#1Rank#4\n• Featherweight World Title FightTrindadevsDem
+	irkapu\n• Light Heavyweight FightLight Heavyweight FightBoapeahvsNechita-R
+	ank-\n• Light Heavyweight FightBoapeahvsNechita\n• Featherweight FightFeat
+	herweight FightPeposhivsMonteiro#3Rank-\n• Featherweight FightPeposhivsMon
+	teiro\n• Heavyweight FightHeavyweight FightBchirivsMahieddine-Rank-\n• Hea
+	vyweight FightBchirivsMahieddine\n• Heavyweight FightHeavyweight FightKhac
+	habvsIancu-Rank-\n• Heavyweight FightKhachabvsIancu\n• Heavyweight FightHe
+	avyweight FightLaïdounivsZeghad#5Rank-\n• Heavyweight FightLaïdounivsZegha
+	d\n• Middleweight FightMiddleweight FightAkingbadevsJanssen-Rank-\n• Middl
+	eweight FightAkingbadevsJanssen\n• Middleweight FightMiddleweight FightNna
+	madimvsLatifi-Rank-\n• Middleweight FightNnamadimvsLatifi\n• Heavyweight F
+	ightHeavyweight FightGashivsKaddani-Rank-\n• Heavyweight FightGashivsKadda
+	ni\n• Welterweight FightWelterweight FightVerelstvsQose-Rank-\n• Welterwei
+	ght FightVerelstvsQose\n• Featherweight FightFeatherweight FightIbrahimivs
+	El Boujadaini-Rank-\n• Featherweight FightIbrahimivsEl Boujadaini\n• Light
+	 Heavyweight FightLight Heavyweight FightGautiervsAzzouzi-Rank-\n• Light H
+	eavyweight FightGautiervsAzzouzi\n• Welterweight FightWelterweight FightMo
+	ukpwovsBouhani-Rank-\n• Welterweight FightMoukpwovsBouhani\n\nhttps://glor
+	ykickboxing.com/events/glory-110\n\nAccurate as of Aug 20\, 4:34 PM UTC
+LOCATION:Superfight Series 16:00 GMT
 DURATION:PT3H
 END:VEVENT
 BEGIN:VEVENT
 UID:https://glorykickboxing.com/events/collision-10
 SUMMARY:COLLISION 10 - GLORY Kickboxing
-DTSTAMP:20260820T124630Z
+DTSTAMP:20260820T163349Z
 DTSTART:20261212T170000Z
 DESCRIPTION:• Heavyweight World Title FightHeavyweight World Title FightKro
 	mahvsPlazibatChampionRank#1Light Heavyweight World Title FightLight Heavyw
@@ -52,7 +91,7 @@ DESCRIPTION:• Heavyweight World Title FightHeavyweight World Title FightKro
 	Light Heavyweight FightWissevsCvjetićanin#2Rank-\n• Light Heavyweight Figh
 	tWissevsCvjetićanin\n• Heavyweight FightHeavyweight FightRajabzadehvsKarim
 	ian-Rank-\n• Heavyweight FightRajabzadehvsKarimian\n\nhttps://glorykickbox
-	ing.com/events/collision-10\n\nAccurate as of Aug 20\, 12:46 PM UTC
+	ing.com/events/collision-10\n\nAccurate as of Aug 20\, 4:34 PM UTC
 LOCATION:Superfight Series 17:00 GMT
 DURATION:PT3H
 END:VEVENT
