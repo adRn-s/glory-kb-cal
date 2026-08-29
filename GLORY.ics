@@ -8,7 +8,7 @@ X-PUBLISHED-TTL:PT1H
 BEGIN:VEVENT
 UID:https://glorykickboxing.com/events/glory-109
 SUMMARY:GLORY 109 - GLORY Kickboxing
-DTSTAMP:20260828T195447Z
+DTSTAMP:20260829T024311Z
 DTSTART:20260905T160000Z
 DESCRIPTION:• Welterweight World Title FightWelterweight World Title FightK
 	wasivsHristovChampionRank#1Heavyweight FightHeavyweight FightOsarovsZimmer
@@ -29,14 +29,14 @@ DESCRIPTION:• Welterweight World Title FightWelterweight World Title FightK
 	#4Rank-\n• Welterweight Proving GroundsKrajinovićvsSamperi\n• Middleweight
 	 FightMiddleweight FightHadarvsTiebe-Rank-\n• Middleweight FightHadarvsTie
 	be\n\nhttps://glorykickboxing.com/events/glory-109\n\nAccurate as of Aug 2
-	8\, 7:55 PM UTC
+	9\, 2:43 AM UTC
 LOCATION:Superfight Series 16:00 GMT
 DURATION:PT3H
 END:VEVENT
 BEGIN:VEVENT
 UID:https://glorykickboxing.com/events/glory-110
 SUMMARY:GLORY 110 - GLORY Kickboxing
-DTSTAMP:20260828T195447Z
+DTSTAMP:20260829T024311Z
 DTSTART:20261017T160000Z
 DESCRIPTION:• Featherweight World Title FightFeatherweight World Title Figh
 	tTrindadevsDemirkapu#1Rank#4Light Heavyweight FightLight Heavyweight Fight
@@ -68,7 +68,7 @@ DESCRIPTION:• Featherweight World Title FightFeatherweight World Title Figh
 	 Heavyweight FightLight Heavyweight FightGautiervsAzzouzi-Rank-\n• Light H
 	eavyweight FightGautiervsAzzouzi\n• Welterweight FightWelterweight FightMo
 	ukpwovsBouhani-Rank-\n• Welterweight FightMoukpwovsBouhani\n\nhttps://glor
-	ykickboxing.com/events/glory-110\n\nAccurate as of Aug 28\, 7:55 PM UTC
+	ykickboxing.com/events/glory-110\n\nAccurate as of Aug 29\, 2:43 AM UTC
 LOCATION:Superfight Series 16:00 GMT
 DURATION:PT3H
 END:VEVENT
