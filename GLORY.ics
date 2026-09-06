@@ -8,10 +8,10 @@ X-PUBLISHED-TTL:PT1H
 BEGIN:VEVENT
 UID:https://glorykickboxing.com/news/glory-109-results-chico-kwasi-defends-title
 SUMMARY:GLORY 109 Results
-DTSTAMP:20260906T145859Z
+DTSTAMP:20260906T180220Z
 DTSTART:20270905T000000Z
 DESCRIPTION:https://glorykickboxing.com/news/glory-109-results-chico-kwasi-
-	defends-title\n\nAccurate as of Sep 6\, 2:59 PM UTC
+	defends-title\n\nAccurate as of Sep 6\, 6:02 PM UTC
 LOCATION:Rotterdam
 DURATION:PT3H
 END:VEVENT
