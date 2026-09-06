@@ -8,20 +8,10 @@ X-PUBLISHED-TTL:PT1H
 BEGIN:VEVENT
 UID:https://glorykickboxing.com/news/glory-109-results-chico-kwasi-defends-title
 SUMMARY:GLORY 109 Results
-DTSTAMP:20260906T082317Z
+DTSTAMP:20260906T145859Z
 DTSTART:20270905T000000Z
 DESCRIPTION:https://glorykickboxing.com/news/glory-109-results-chico-kwasi-
-	defends-title\n\nAccurate as of Sep 6\, 8:23 AM UTC
-LOCATION:Rotterdam
-DURATION:PT3H
-END:VEVENT
-BEGIN:VEVENT
-UID:https://glorykickboxing.com/news/glory-109-weigh-in-results
-SUMMARY:GLORY 109 Weigh-In Results Back to newsGLORY
-DTSTAMP:20260906T082317Z
-DTSTART:20270905T000000Z
-DESCRIPTION:https://glorykickboxing.com/news/glory-109-weigh-in-results\n\n
-	Accurate as of Sep 6\, 8:23 AM UTC
+	defends-title\n\nAccurate as of Sep 6\, 2:59 PM UTC
 LOCATION:Rotterdam
 DURATION:PT3H
 END:VEVENT
