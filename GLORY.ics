@@ -8,7 +8,7 @@ X-PUBLISHED-TTL:PT1H
 BEGIN:VEVENT
 UID:https://glorykickboxing.com/events/glory-110
 SUMMARY:GLORY 110 - GLORY Kickboxing
-DTSTAMP:20260909T221658Z
+DTSTAMP:20260910T031551Z
 DTSTART:20261017T160000Z
 DESCRIPTION:• Featherweight World Title FightFeatherweight World Title Figh
 	tTrindadevsDemirkapu#1Rank#4Light Heavyweight FightLight Heavyweight Fight
@@ -40,14 +40,14 @@ DESCRIPTION:• Featherweight World Title FightFeatherweight World Title Figh
 	 Heavyweight FightLight Heavyweight FightGautiervsAzzouzi-Rank-\n• Light H
 	eavyweight FightGautiervsAzzouzi\n• Welterweight FightWelterweight FightMo
 	ukpwovsBouhani-Rank-\n• Welterweight FightMoukpwovsBouhani\n\nhttps://glor
-	ykickboxing.com/events/glory-110\n\nAccurate as of Sep 9\, 10:17 PM UTC
+	ykickboxing.com/events/glory-110\n\nAccurate as of Sep 10\, 3:16 AM UTC
 LOCATION:Superfight Series 16:00 GMT
 DURATION:PT3H
 END:VEVENT
 BEGIN:VEVENT
 UID:https://glorykickboxing.com/events/glory-rivals-6
 SUMMARY:GLORY RIVALS 6 - GLORY Kickboxing
-DTSTAMP:20260909T221658Z
+DTSTAMP:20260910T031551Z
 DTSTART:20261128T170000Z
 DESCRIPTION:• Lightweight FightLightweight FightOzcanvsAfakir-Rank-Welterwe
 	ight FightWelterweight FightRegtervsKhalouta-Rank-Middleweight FightMiddle
@@ -58,7 +58,7 @@ DESCRIPTION:• Lightweight FightLightweight FightOzcanvsAfakir-Rank-Welterwe
 	eweight FightMiddleweight FightDiravsHammouti-Rank-\n• Middleweight FightD
 	iravsHammouti\n• Light Heavyweight FightLight Heavyweight FightCenikvsAmin
 	e-Rank-\n• Light Heavyweight FightCenikvsAmine\n\nhttps://glorykickboxing.
-	com/events/glory-rivals-6\n\nAccurate as of Sep 9\, 10:17 PM UTC
+	com/events/glory-rivals-6\n\nAccurate as of Sep 10\, 3:16 AM UTC
 LOCATION:Main Card 17:00 GMT
 DURATION:PT3H
 END:VEVENT
