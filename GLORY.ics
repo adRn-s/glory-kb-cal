@@ -6,9 +6,50 @@ METHOD:PUBLISH
 X-WR-CALNAME:GLORY Kickboxing
 X-PUBLISHED-TTL:PT1H
 BEGIN:VEVENT
+UID:https://glorykickboxing.com/events/glory-110
+SUMMARY:GLORY 110 - GLORY Kickboxing
+DTSTAMP:20260918T155410Z
+DTSTART:20261017T150000Z
+DESCRIPTION:• Featherweight World Title FightFeatherweight World Title Figh
+	tTrindadevsDemirkapu#1Rank#4Light Heavyweight FightLight Heavyweight Fight
+	BoapeahvsNechita-Rank-Welterweight FightWelterweight FightSnovsHamicha#3Ra
+	nk#5Featherweight FightFeatherweight FightPeposhivsMonteiro#3Rank-Heavywei
+	ght FightHeavyweight FightBchirivsMahieddine-Rank-Heavyweight FightHeavywe
+	ight FightKhachabvsIancu-Rank-Heavyweight FightHeavyweight FightLaïdounivs
+	Zeghad#5Rank-Middleweight FightMiddleweight FightAkingbadevsJanssen-Rank-M
+	iddleweight FightMiddleweight FightNnamadimvsLatifi-Rank-Heavyweight Fight
+	Heavyweight FightGashivsKaddani-Rank-Welterweight FightWelterweight FightV
+	erelstvsQose-Rank-Featherweight FightFeatherweight FightIbrahimivsEl Bouja
+	daini-Rank-Light Heavyweight FightLight Heavyweight FightGautiervsAzzouzi-
+	Rank-Welterweight FightWelterweight FightMoukpwovsBouhani-Rank-\n• Feather
+	weight World Title FightFeatherweight World Title FightTrindadevsDemirkapu
+	#1Rank#4\n• Featherweight World Title FightTrindadevsDemirkapu\n• Light He
+	avyweight FightLight Heavyweight FightBoapeahvsNechita-Rank-\n• Light Heav
+	yweight FightBoapeahvsNechita\n• Welterweight FightWelterweight FightSnovs
+	Hamicha#3Rank#5\n• Welterweight FightSnovsHamicha\n• Featherweight FightFe
+	atherweight FightPeposhivsMonteiro#3Rank-\n• Featherweight FightPeposhivsM
+	onteiro\n• Heavyweight FightHeavyweight FightBchirivsMahieddine-Rank-\n• H
+	eavyweight FightBchirivsMahieddine\n• Heavyweight FightHeavyweight FightKh
+	achabvsIancu-Rank-\n• Heavyweight FightKhachabvsIancu\n• Heavyweight Fight
+	Heavyweight FightLaïdounivsZeghad#5Rank-\n• Heavyweight FightLaïdounivsZeg
+	had\n• Middleweight FightMiddleweight FightAkingbadevsJanssen-Rank-\n• Mid
+	dleweight FightAkingbadevsJanssen\n• Middleweight FightMiddleweight FightN
+	namadimvsLatifi-Rank-\n• Middleweight FightNnamadimvsLatifi\n• Heavyweight
+	 FightHeavyweight FightGashivsKaddani-Rank-\n• Heavyweight FightGashivsKad
+	dani\n• Welterweight FightWelterweight FightVerelstvsQose-Rank-\n• Welterw
+	eight FightVerelstvsQose\n• Featherweight FightFeatherweight FightIbrahimi
+	vsEl Boujadaini-Rank-\n• Featherweight FightIbrahimivsEl Boujadaini\n• Lig
+	ht Heavyweight FightLight Heavyweight FightGautiervsAzzouzi-Rank-\n• Light
+	 Heavyweight FightGautiervsAzzouzi\n• Welterweight FightWelterweight Fight
+	MoukpwovsBouhani-Rank-\n• Welterweight FightMoukpwovsBouhani\n\nhttps://gl
+	orykickboxing.com/events/glory-110\n\nAccurate as of Sep 18\, 3:54 PM UTC
+LOCATION:Superfight Series 15:00 GMT
+DURATION:PT3H
+END:VEVENT
+BEGIN:VEVENT
 UID:https://glorykickboxing.com/events/glory-rivals-6
 SUMMARY:GLORY RIVALS 6 - GLORY Kickboxing
-DTSTAMP:20260918T084658Z
+DTSTAMP:20260918T155410Z
 DTSTART:20261128T170000Z
 DESCRIPTION:• Lightweight FightLightweight FightOzcanvsAfakir-Rank-Welterwe
 	ight FightWelterweight FightRegtervsKhalouta-Rank-Middleweight FightMiddle
@@ -19,14 +60,14 @@ DESCRIPTION:• Lightweight FightLightweight FightOzcanvsAfakir-Rank-Welterwe
 	eweight FightMiddleweight FightDiravsHammouti-Rank-\n• Middleweight FightD
 	iravsHammouti\n• Light Heavyweight FightLight Heavyweight FightCenikvsAmin
 	e-Rank-\n• Light Heavyweight FightCenikvsAmine\n\nhttps://glorykickboxing.
-	com/events/glory-rivals-6\n\nAccurate as of Sep 18\, 8:47 AM UTC
+	com/events/glory-rivals-6\n\nAccurate as of Sep 18\, 3:54 PM UTC
 LOCATION:Main Card 17:00 GMT
 DURATION:PT3H
 END:VEVENT
 BEGIN:VEVENT
 UID:https://glorykickboxing.com/events/collision-10
 SUMMARY:COLLISION 10 - GLORY Kickboxing
-DTSTAMP:20260918T084658Z
+DTSTAMP:20260918T155410Z
 DTSTART:20261212T170000Z
 DESCRIPTION:• Heavyweight World Title FightHeavyweight World Title FightKro
 	mahvsPlazibatChampionRank#1Light Heavyweight World Title FightLight Heavyw
@@ -40,7 +81,7 @@ DESCRIPTION:• Heavyweight World Title FightHeavyweight World Title FightKro
 	Light Heavyweight FightWissevsCvjetićanin#2Rank-\n• Light Heavyweight Figh
 	tWissevsCvjetićanin\n• Heavyweight FightHeavyweight FightRajabzadehvsKarim
 	ian-Rank-\n• Heavyweight FightRajabzadehvsKarimian\n\nhttps://glorykickbox
-	ing.com/events/collision-10\n\nAccurate as of Sep 18\, 8:47 AM UTC
+	ing.com/events/collision-10\n\nAccurate as of Sep 18\, 3:54 PM UTC
 LOCATION:Superfight Series 17:00 GMT
 DURATION:PT3H
 END:VEVENT
