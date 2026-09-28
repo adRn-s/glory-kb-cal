@@ -8,48 +8,35 @@ X-PUBLISHED-TTL:PT1H
 BEGIN:VEVENT
 UID:https://glorykickboxing.com/events/glory-110
 SUMMARY:GLORY 110 - GLORY Kickboxing
-DTSTAMP:20260928T035150Z
+DTSTAMP:20260928T103716Z
 DTSTART:20261017T150000Z
 DESCRIPTION:• Featherweight World Title FightFeatherweight World Title Figh
 	tTrindadevsDemirkapu#1Rank#4Light Heavyweight FightLight Heavyweight Fight
-	BoapeahvsNechita-Rank-Welterweight FightWelterweight FightSnovsHamicha#3Ra
-	nk#5Featherweight FightFeatherweight FightPeposhivsMonteiro#3Rank-Heavywei
-	ght FightHeavyweight FightBchirivsMahieddine-Rank-Heavyweight FightHeavywe
-	ight FightKhachabvsIancu-Rank-Heavyweight FightHeavyweight FightLaïdounivs
-	Zeghad#5Rank-Middleweight FightMiddleweight FightAkingbadevsJanssen-Rank-M
-	iddleweight FightMiddleweight FightLatifivsIlioski-Rank-Heavyweight FightH
-	eavyweight FightGashivsKaddani-Rank-Welterweight FightWelterweight FightVe
-	relstvsQose-Rank-Featherweight FightFeatherweight FightIbrahimivsEl Boujad
-	aini-Rank-Light Heavyweight FightLight Heavyweight FightGautiervsAzzouzi-R
-	ank-Welterweight FightWelterweight FightMoukpwovsBouhani-Rank-\n• Featherw
-	eight World Title FightFeatherweight World Title FightTrindadevsDemirkapu#
-	1Rank#4\n• Featherweight World Title FightTrindadevsDemirkapu\n• Light Hea
-	vyweight FightLight Heavyweight FightBoapeahvsNechita-Rank-\n• Light Heavy
-	weight FightBoapeahvsNechita\n• Welterweight FightWelterweight FightSnovsH
-	amicha#3Rank#5\n• Welterweight FightSnovsHamicha\n• Featherweight FightFea
-	therweight FightPeposhivsMonteiro#3Rank-\n• Featherweight FightPeposhivsMo
-	nteiro\n• Heavyweight FightHeavyweight FightBchirivsMahieddine-Rank-\n• He
-	avyweight FightBchirivsMahieddine\n• Heavyweight FightHeavyweight FightKha
-	chabvsIancu-Rank-\n• Heavyweight FightKhachabvsIancu\n• Heavyweight FightH
-	eavyweight FightLaïdounivsZeghad#5Rank-\n• Heavyweight FightLaïdounivsZegh
-	ad\n• Middleweight FightMiddleweight FightAkingbadevsJanssen-Rank-\n• Midd
-	leweight FightAkingbadevsJanssen\n• Middleweight FightMiddleweight FightLa
-	tifivsIlioski-Rank-\n• Middleweight FightLatifivsIlioski\n• Heavyweight Fi
-	ghtHeavyweight FightGashivsKaddani-Rank-\n• Heavyweight FightGashivsKaddan
-	i\n• Welterweight FightWelterweight FightVerelstvsQose-Rank-\n• Welterweig
-	ht FightVerelstvsQose\n• Featherweight FightFeatherweight FightIbrahimivsE
-	l Boujadaini-Rank-\n• Featherweight FightIbrahimivsEl Boujadaini\n• Light 
-	Heavyweight FightLight Heavyweight FightGautiervsAzzouzi-Rank-\n• Light He
-	avyweight FightGautiervsAzzouzi\n• Welterweight FightWelterweight FightMou
-	kpwovsBouhani-Rank-\n• Welterweight FightMoukpwovsBouhani\n\nhttps://glory
-	kickboxing.com/events/glory-110\n\nAccurate as of Sep 28\, 3:52 AM UTC
+	BoapeahvsNechita-Rank-Heavyweight FightHeavyweight FightBchirivsMahieddine
+	-Rank-Featherweight FightFeatherweight FightPeposhivsMonteiro#3Rank-Middle
+	weight FightMiddleweight FightAkingbadevsUgrincic-Rank-Heavyweight FightHe
+	avyweight FightKhachabvsIancu-Rank-Middleweight FightMiddleweight FightLat
+	ifivsIlioski-Rank-Heavyweight FightHeavyweight FightLaïdounivsZeghad#5Rank
+	-\n• Featherweight World Title FightFeatherweight World Title FightTrindad
+	evsDemirkapu#1Rank#4\n• Featherweight World Title FightTrindadevsDemirkapu
+	\n• Light Heavyweight FightLight Heavyweight FightBoapeahvsNechita-Rank-\n
+	• Light Heavyweight FightBoapeahvsNechita\n• Heavyweight FightHeavyweight 
+	FightBchirivsMahieddine-Rank-\n• Heavyweight FightBchirivsMahieddine\n• Fe
+	atherweight FightFeatherweight FightPeposhivsMonteiro#3Rank-\n• Featherwei
+	ght FightPeposhivsMonteiro\n• Middleweight FightMiddleweight FightAkingbad
+	evsUgrincic-Rank-\n• Middleweight FightAkingbadevsUgrincic\n• Heavyweight 
+	FightHeavyweight FightKhachabvsIancu-Rank-\n• Heavyweight FightKhachabvsIa
+	ncu\n• Middleweight FightMiddleweight FightLatifivsIlioski-Rank-\n• Middle
+	weight FightLatifivsIlioski\n• Heavyweight FightHeavyweight FightLaïdouniv
+	sZeghad#5Rank-\n• Heavyweight FightLaïdounivsZeghad\n\nhttps://glorykickbo
+	xing.com/events/glory-110\n\nAccurate as of Sep 28\, 10:37 AM UTC
 LOCATION:Superfight Series 15:00 GMT
 DURATION:PT3H
 END:VEVENT
 BEGIN:VEVENT
 UID:https://glorykickboxing.com/events/glory-rivals-6
 SUMMARY:GLORY RIVALS 6 - GLORY Kickboxing
-DTSTAMP:20260928T035150Z
+DTSTAMP:20260928T103716Z
 DTSTART:20261128T170000Z
 DESCRIPTION:• Lightweight FightLightweight FightOzcanvsAfakir-Rank-Welterwe
 	ight FightWelterweight FightRegtervsKhalouta-Rank-Middleweight FightMiddle
@@ -60,14 +47,14 @@ DESCRIPTION:• Lightweight FightLightweight FightOzcanvsAfakir-Rank-Welterwe
 	eweight FightMiddleweight FightDiravsHammouti-Rank-\n• Middleweight FightD
 	iravsHammouti\n• Light Heavyweight FightLight Heavyweight FightCenikvsAmin
 	e-Rank-\n• Light Heavyweight FightCenikvsAmine\n\nhttps://glorykickboxing.
-	com/events/glory-rivals-6\n\nAccurate as of Sep 28\, 3:52 AM UTC
+	com/events/glory-rivals-6\n\nAccurate as of Sep 28\, 10:37 AM UTC
 LOCATION:Main Card 17:00 GMT
 DURATION:PT3H
 END:VEVENT
 BEGIN:VEVENT
 UID:https://glorykickboxing.com/events/collision-10
 SUMMARY:COLLISION 10 - GLORY Kickboxing
-DTSTAMP:20260928T035150Z
+DTSTAMP:20260928T103716Z
 DTSTART:20261212T170000Z
 DESCRIPTION:• Heavyweight World Title FightHeavyweight World Title FightKro
 	mahvsPlazibatChampionRank#1Light Heavyweight World Title FightLight Heavyw
@@ -84,7 +71,7 @@ DESCRIPTION:• Heavyweight World Title FightHeavyweight World Title FightKro
 	dehvsKarimian-Rank-\n• Heavyweight FightRajabzadehvsKarimian\n• Welterweig
 	ht Tournament ReserveWelterweight Tournament ReserveTodorovicvsSabri-Rank-
 	\n• Welterweight Tournament ReserveTodorovicvsSabri\n\nhttps://glorykickbo
-	xing.com/events/collision-10\n\nAccurate as of Sep 28\, 3:52 AM UTC
+	xing.com/events/collision-10\n\nAccurate as of Sep 28\, 10:37 AM UTC
 LOCATION:Superfight Series 17:00 GMT
 DURATION:PT3H
 END:VEVENT
