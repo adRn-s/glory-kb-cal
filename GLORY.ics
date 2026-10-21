@@ -8,7 +8,7 @@ X-PUBLISHED-TTL:PT1H
 BEGIN:VEVENT
 UID:https://glorykickboxing.com/events/glory-rivals-6
 SUMMARY:GLORY RIVALS 6 - GLORY Kickboxing
-DTSTAMP:20261021T090820Z
+DTSTAMP:20261021T164029Z
 DTSTART:20261128T190000Z
 DESCRIPTION:• Lightweight FightLightweight FightOzcanvsAfakir-Rank-Welterwe
 	ight FightWelterweight FightRegtervsKhalouta-Rank-Light Heavyweight FightL
@@ -28,14 +28,14 @@ DESCRIPTION:• Lightweight FightLightweight FightOzcanvsAfakir-Rank-Welterwe
 	therweight FightTouchassievsBinnendijk-Rank-\n• Featherweight FightTouchas
 	sievsBinnendijk\n• Welterweight FightWelterweight FightDillardvsGursaz-Ran
 	k-\n• Welterweight FightDillardvsGursaz\n\nhttps://glorykickboxing.com/eve
-	nts/glory-rivals-6\n\nAccurate as of Oct 21\, 9:08 AM UTC
+	nts/glory-rivals-6\n\nAccurate as of Oct 21\, 4:40 PM UTC
 LOCATION:Main Card 19:00 GMT
 DURATION:PT3H
 END:VEVENT
 BEGIN:VEVENT
 UID:https://glorykickboxing.com/events/collision-10
 SUMMARY:COLLISION 10 - GLORY Kickboxing
-DTSTAMP:20261021T090820Z
+DTSTAMP:20261021T164029Z
 DTSTART:20261212T170000Z
 DESCRIPTION:• Heavyweight World Title FightHeavyweight World Title FightKro
 	mahvsPlazibatChampionRank#1Light Heavyweight World Title FightLight Heavyw
@@ -61,7 +61,7 @@ DESCRIPTION:• Heavyweight World Title FightHeavyweight World Title FightKro
 	n• Welterweight QuarterfinalHristovvsOuled-Chaib\n• Welterweight Quarterfi
 	nalWelterweight QuarterfinalMenshikovvsSabri-Rank-\n• Welterweight Quarter
 	finalMenshikovvsSabri\n\nhttps://glorykickboxing.com/events/collision-10\n
-	\nAccurate as of Oct 21\, 9:08 AM UTC
+	\nAccurate as of Oct 21\, 4:40 PM UTC
 LOCATION:Superfight Series 17:00 GMT
 DURATION:PT3H
 END:VEVENT
