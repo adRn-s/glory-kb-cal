@@ -8,7 +8,7 @@ X-PUBLISHED-TTL:PT1H
 BEGIN:VEVENT
 UID:https://glorykickboxing.com/events/glory-rivals-6
 SUMMARY:GLORY RIVALS 6 - GLORY Kickboxing
-DTSTAMP:20261023T090717Z
+DTSTAMP:20261023T163137Z
 DTSTART:20261128T190000Z
 DESCRIPTION:• Lightweight FightLightweight FightOzcanvsAfakir-Rank-Welterwe
 	ight FightWelterweight FightRegtervsKhalouta-Rank-Light Heavyweight FightL
@@ -28,14 +28,14 @@ DESCRIPTION:• Lightweight FightLightweight FightOzcanvsAfakir-Rank-Welterwe
 	rweight FightTouchassievsBinnendijk-Rank-\n• Featherweight FightTouchassie
 	vsBinnendijk\n• Welterweight FightWelterweight FightDillardvsGursaz-Rank-\
 	n• Welterweight FightDillardvsGursaz\n\nhttps://glorykickboxing.com/events
-	/glory-rivals-6\n\nAccurate as of Oct 23\, 9:07 AM UTC
+	/glory-rivals-6\n\nAccurate as of Oct 23\, 4:31 PM UTC
 LOCATION:Main Card 19:00 GMT
 DURATION:PT3H
 END:VEVENT
 BEGIN:VEVENT
 UID:https://glorykickboxing.com/events/collision-10
 SUMMARY:COLLISION 10 - GLORY Kickboxing
-DTSTAMP:20261023T090717Z
+DTSTAMP:20261023T163137Z
 DTSTART:20261212T170000Z
 DESCRIPTION:• Heavyweight World Title FightHeavyweight World Title FightKro
 	mahvsPlazibatChampionRank#1Light Heavyweight World Title FightLight Heavyw
@@ -64,7 +64,7 @@ DESCRIPTION:• Heavyweight World Title FightHeavyweight World Title FightKro
 	eight QuarterfinalMenshikovvsSabri\n• Welterweight Tournament ReserveWelte
 	rweight Tournament ReserveHamichavsTodorovic#5Rank-\n• Welterweight Tourna
 	ment ReserveHamichavsTodorovic\n\nhttps://glorykickboxing.com/events/colli
-	sion-10\n\nAccurate as of Oct 23\, 9:07 AM UTC
+	sion-10\n\nAccurate as of Oct 23\, 4:31 PM UTC
 LOCATION:Superfight Series 17:00 GMT
 DURATION:PT3H
 END:VEVENT
