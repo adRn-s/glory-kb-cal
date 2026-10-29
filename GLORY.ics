@@ -6,66 +6,13 @@ METHOD:PUBLISH
 X-WR-CALNAME:GLORY Kickboxing
 X-PUBLISHED-TTL:PT1H
 BEGIN:VEVENT
-UID:https://glorykickboxing.com/events/glory-rivals-6
-SUMMARY:GLORY RIVALS 6 - GLORY Kickboxing
-DTSTAMP:20261029T043302Z
-DTSTART:20261128T190000Z
-DESCRIPTION:• Lightweight FightLightweight FightOzcanvsAfakir-Rank-Welterwe
-	ight FightWelterweight FightRegtervsKhalouta-Rank-Light Heavyweight FightL
-	ight Heavyweight FightCenikvsAmine-Rank-Featherweight FightFeatherweight F
-	ightBakalivsHaddad-Rank-Middleweight FightMiddleweight FightDiravsHammouti
-	-Rank-Featherweight FightFeatherweight FightBelarejvsMousavi-Rank-Featherw
-	eight FightFeatherweight FightTouchassievsBinnendijk-Rank-Welterweight Fig
-	htWelterweight FightDillardvsGursaz-Rank-\n• Lightweight FightLightweight 
-	FightOzcanvsAfakir-Rank-\n• Lightweight FightOzcanvsAfakir\n• Welterweight
-	 FightWelterweight FightRegtervsKhalouta-Rank-\n• Welterweight FightRegter
-	vsKhalouta\n• Light Heavyweight FightLight Heavyweight FightCenikvsAmine-R
-	ank-\n• Light Heavyweight FightCenikvsAmine\n• Featherweight FightFeatherw
-	eight FightBakalivsHaddad-Rank-\n• Featherweight FightBakalivsHaddad\n• Mi
-	ddleweight FightMiddleweight FightDiravsHammouti-Rank-\n• Middleweight Fig
-	htDiravsHammouti\n• Featherweight FightFeatherweight FightBelarejvsMousavi
-	-Rank-\n• Featherweight FightBelarejvsMousavi\n• Featherweight FightFeathe
-	rweight FightTouchassievsBinnendijk-Rank-\n• Featherweight FightTouchassie
-	vsBinnendijk\n• Welterweight FightWelterweight FightDillardvsGursaz-Rank-\
-	n• Welterweight FightDillardvsGursaz\n\nhttps://glorykickboxing.com/events
-	/glory-rivals-6\n\nAccurate as of Oct 29\, 4:33 AM UTC
-LOCATION:Main Card 19:00 GMT
-DURATION:PT3H
-END:VEVENT
-BEGIN:VEVENT
-UID:https://glorykickboxing.com/events/collision-10
-SUMMARY:COLLISION 10 - GLORY Kickboxing
-DTSTAMP:20261029T043302Z
-DTSTART:20261212T170000Z
-DESCRIPTION:• Heavyweight World Title FightHeavyweight World Title FightKro
-	mahvsPlazibatChampionRank#1Light Heavyweight World Title FightLight Heavyw
-	eight World Title FightTouchassievsKhbabezChampionRank-Light Heavyweight F
-	ightLight Heavyweight FightWissevsCvjetićanin#2Rank-Heavyweight FightHeavy
-	weight FightRajabzadehvsKarimian-Rank-8-man Welterweight Grand PrixQuarter
-	finalsSemifinalsFinalWelterweight QuarterfinalWelterweight QuarterfinalKwa
-	sivsHamdiChampionRank-Welterweight QuarterfinalWelterweight QuarterfinalOv
-	ermeervsKrajinović-Rank#4Welterweight QuarterfinalWelterweight Quarterfina
-	lHristovvsOuled-Chaib#1Rank-Welterweight QuarterfinalWelterweight Quarterf
-	inalMenshikovvsSabri-Rank-Welterweight Tournament ReserveWelterweight Tour
-	nament ReserveHamichavsTodorovic#5Rank-\n• Heavyweight World Title FightHe
-	avyweight World Title FightKromahvsPlazibatChampionRank#1\n• Heavyweight W
-	orld Title FightKromahvsPlazibat\n• Light Heavyweight World Title FightLig
-	ht Heavyweight World Title FightTouchassievsKhbabezChampionRank-\n• Light 
-	Heavyweight World Title FightTouchassievsKhbabez\n• Light Heavyweight Figh
-	tLight Heavyweight FightWissevsCvjetićanin#2Rank-\n• Light Heavyweight Fig
-	htWissevsCvjetićanin\n• Heavyweight FightHeavyweight FightRajabzadehvsKari
-	mian-Rank-\n• Heavyweight FightRajabzadehvsKarimian\n• Welterweight Quarte
-	rfinalWelterweight QuarterfinalKwasivsHamdiChampionRank-\n• Welterweight Q
-	uarterfinalKwasivsHamdi\n• Welterweight QuarterfinalWelterweight Quarterfi
-	nalOvermeervsKrajinović-Rank#4\n• Welterweight QuarterfinalOvermeervsKraji
-	nović\n• Welterweight QuarterfinalWelterweight QuarterfinalHristovvsOuled-
-	Chaib#1Rank-\n• Welterweight QuarterfinalHristovvsOuled-Chaib\n• Welterwei
-	ght QuarterfinalWelterweight QuarterfinalMenshikovvsSabri-Rank-\n• Welterw
-	eight QuarterfinalMenshikovvsSabri\n• Welterweight Tournament ReserveWelte
-	rweight Tournament ReserveHamichavsTodorovic#5Rank-\n• Welterweight Tourna
-	ment ReserveHamichavsTodorovic\n\nhttps://glorykickboxing.com/events/colli
-	sion-10\n\nAccurate as of Oct 29\, 4:33 AM UTC
-LOCATION:Superfight Series 17:00 GMT
+UID:https://glorykickboxing.com/news/trindade-peposhi-settle-the-score-at-glory-111
+SUMMARY:GLORY 111 Back to newsTrindade
+DTSTAMP:20261029T145746Z
+DTSTART:20261128T000000Z
+DESCRIPTION:https://glorykickboxing.com/news/trindade-peposhi-settle-the-sc
+	ore-at-glory-111\n\nAccurate as of Oct 29\, 2:57 PM UTC
+LOCATION:GLORY
 DURATION:PT3H
 END:VEVENT
 END:VCALENDAR
