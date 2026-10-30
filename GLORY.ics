@@ -8,10 +8,10 @@ X-PUBLISHED-TTL:PT1H
 BEGIN:VEVENT
 UID:https://glorykickboxing.com/news/trindade-peposhi-settle-the-score-at-glory-111
 SUMMARY:GLORY 111 Back to newsTrindade
-DTSTAMP:20261030T145124Z
+DTSTAMP:20261030T202538Z
 DTSTART:20261128T000000Z
 DESCRIPTION:https://glorykickboxing.com/news/trindade-peposhi-settle-the-sc
-	ore-at-glory-111\n\nAccurate as of Oct 30\, 2:51 PM UTC
+	ore-at-glory-111\n\nAccurate as of Oct 30\, 8:25 PM UTC
 LOCATION:GLORY
 DURATION:PT3H
 END:VEVENT
