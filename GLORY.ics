@@ -8,7 +8,7 @@ X-PUBLISHED-TTL:PT1H
 BEGIN:VEVENT
 UID:https://glorykickboxing.com/events/glory-rivals-6
 SUMMARY:GLORY RIVALS 6 - GLORY Kickboxing
-DTSTAMP:20261101T144520Z
+DTSTAMP:20261101T201227Z
 DTSTART:20261128T190000Z
 DESCRIPTION:• Lightweight FightLightweight FightOzcanvsAfakir-Rank-Welterwe
 	ight FightWelterweight FightRegtervsKhalouta-Rank-Light Heavyweight FightL
@@ -28,14 +28,14 @@ DESCRIPTION:• Lightweight FightLightweight FightOzcanvsAfakir-Rank-Welterwe
 	rweight FightTouchassievsBinnendijk-Rank-\n• Featherweight FightTouchassie
 	vsBinnendijk\n• Welterweight FightWelterweight FightDillardvsGursaz-Rank-\
 	n• Welterweight FightDillardvsGursaz\n\nhttps://glorykickboxing.com/events
-	/glory-rivals-6\n\nAccurate as of Nov 1\, 2:45 PM UTC
+	/glory-rivals-6\n\nAccurate as of Nov 1\, 8:12 PM UTC
 LOCATION:Main Card 19:00 GMT
 DURATION:PT3H
 END:VEVENT
 BEGIN:VEVENT
 UID:https://glorykickboxing.com/events/collision-10
 SUMMARY:COLLISION 10 - GLORY Kickboxing
-DTSTAMP:20261101T144520Z
+DTSTAMP:20261101T201227Z
 DTSTART:20261212T170000Z
 DESCRIPTION:• Heavyweight World Title FightHeavyweight World Title FightKro
 	mahvsPlazibatChampionRank#1Light Heavyweight World Title FightLight Heavyw
@@ -65,20 +65,20 @@ DESCRIPTION:• Heavyweight World Title FightHeavyweight World Title FightKro
 	er-final 4KwasivsHamdi\n• Welterweight Tournament ReserveWelterweight Tour
 	nament ReserveHamichavsTodorovic#5Rank-\n• Welterweight Tournament Reserve
 	HamichavsTodorovic\n\nhttps://glorykickboxing.com/events/collision-10\n\nA
-	ccurate as of Nov 1\, 2:45 PM UTC
+	ccurate as of Nov 1\, 8:12 PM UTC
 LOCATION:Superfight Series 17:00 GMT
 DURATION:PT3H
 END:VEVENT
 BEGIN:VEVENT
 UID:https://glorykickboxing.com/events/glory-111
 SUMMARY:GLORY 111 - GLORY Kickboxing
-DTSTAMP:20261101T144520Z
+DTSTAMP:20261101T201227Z
 DTSTART:20270206T170000Z
 DESCRIPTION:• Featherweight World Title FightFeatherweight World Title Figh
 	tTrindadevsPeposhiChampionRank#1\n• Featherweight World Title FightFeather
 	weight World Title FightTrindadevsPeposhiChampionRank#1\n• Featherweight W
 	orld Title FightTrindadevsPeposhi\n\nhttps://glorykickboxing.com/events/gl
-	ory-111\n\nAccurate as of Nov 1\, 2:45 PM UTC
+	ory-111\n\nAccurate as of Nov 1\, 8:12 PM UTC
 LOCATION:Prelims 17:00 GMT
 DURATION:PT3H
 END:VEVENT
