@@ -8,7 +8,7 @@ X-PUBLISHED-TTL:PT1H
 BEGIN:VEVENT
 UID:https://glorykickboxing.com/events/glory-rivals-6
 SUMMARY:GLORY RIVALS 6 - GLORY Kickboxing
-DTSTAMP:20261104T192424Z
+DTSTAMP:20261105T004341Z
 DTSTART:20261128T190000Z
 DESCRIPTION:• Lightweight FightLightweight FightOzcanvsAfakir-Rank-Welterwe
 	ight FightWelterweight FightRegtervsKhalouta-Rank-Light Heavyweight FightL
@@ -28,14 +28,14 @@ DESCRIPTION:• Lightweight FightLightweight FightOzcanvsAfakir-Rank-Welterwe
 	weight FightTouchassievsBinnendijk-Rank-\n• Middleweight FightTouchassievs
 	Binnendijk\n• Welterweight FightWelterweight FightDillardvsGursaz-Rank-\n•
 	 Welterweight FightDillardvsGursaz\n\nhttps://glorykickboxing.com/events/g
-	lory-rivals-6\n\nAccurate as of Nov 4\, 7:24 PM UTC
+	lory-rivals-6\n\nAccurate as of Nov 5\, 12:43 AM UTC
 LOCATION:Main Card 19:00 GMT
 DURATION:PT3H
 END:VEVENT
 BEGIN:VEVENT
 UID:https://glorykickboxing.com/events/collision-10
 SUMMARY:COLLISION 10 - GLORY Kickboxing
-DTSTAMP:20261104T192424Z
+DTSTAMP:20261105T004341Z
 DTSTART:20261212T170000Z
 DESCRIPTION:• Heavyweight World Title FightHeavyweight World Title FightKro
 	mahvsPlazibatChampionRank#1Light Heavyweight World Title FightLight Heavyw
@@ -65,14 +65,14 @@ DESCRIPTION:• Heavyweight World Title FightHeavyweight World Title FightKro
 	er-final 4KwasivsHamdi\n• Welterweight Tournament ReserveWelterweight Tour
 	nament ReserveHamichavsTodorovic#5Rank-\n• Welterweight Tournament Reserve
 	HamichavsTodorovic\n\nhttps://glorykickboxing.com/events/collision-10\n\nA
-	ccurate as of Nov 4\, 7:24 PM UTC
+	ccurate as of Nov 5\, 12:43 AM UTC
 LOCATION:Superfight Series 17:00 GMT
 DURATION:PT3H
 END:VEVENT
 BEGIN:VEVENT
 UID:https://glorykickboxing.com/events/glory-111
 SUMMARY:GLORY 111 - GLORY Kickboxing
-DTSTAMP:20261104T192424Z
+DTSTAMP:20261105T004341Z
 DTSTART:20270206T170000Z
 DESCRIPTION:• Featherweight World Title FightFeatherweight World Title Figh
 	tTrindadevsPeposhiChampionRank#1Middleweight FightMiddleweight FightOzcagl
@@ -80,7 +80,7 @@ DESCRIPTION:• Featherweight World Title FightFeatherweight World Title Figh
 	d Title FightTrindadevsPeposhiChampionRank#1\n• Featherweight World Title 
 	FightTrindadevsPeposhi\n• Middleweight FightMiddleweight FightOzcaglayanvs
 	Akingbade-Rank-\n• Middleweight FightOzcaglayanvsAkingbade\n\nhttps://glor
-	ykickboxing.com/events/glory-111\n\nAccurate as of Nov 4\, 7:24 PM UTC
+	ykickboxing.com/events/glory-111\n\nAccurate as of Nov 5\, 12:43 AM UTC
 LOCATION:Prelims 17:00 GMT
 DURATION:PT3H
 END:VEVENT
