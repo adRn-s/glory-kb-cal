@@ -33,7 +33,7 @@ jobs:
           fi
       - name: Upload GLORY.ics artifact
         if: github.event_name == 'pull_request'
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: GLORY.ics
           path: GLORY.ics
