@@ -6,60 +6,13 @@ METHOD:PUBLISH
 X-WR-CALNAME:GLORY Kickboxing
 X-PUBLISHED-TTL:PT1H
 BEGIN:VEVENT
-UID:https://glorykickboxing.com/events/glory-rivals-6
-SUMMARY:GLORY RIVALS 6 - GLORY Kickboxing
-DTSTAMP:20261123T055532Z
-DTSTART:20261128T190000Z
-DESCRIPTION:• Lightweight FightLightweight FightOzcanvsAfakir-Rank-Welterwe
-	ight FightWelterweight FightRegtervsKhalouta-Rank-Light Heavyweight FightL
-	ight Heavyweight FightCenikvsAmine-Rank-Featherweight FightFeatherweight F
-	ightBakkalivsHaddad-Rank-Middleweight FightMiddleweight FightDiravsHammout
-	i-Rank-Featherweight FightFeatherweight FightBelarejvsMousavi-Rank-Middlew
-	eight FightMiddleweight FightTouchassievsBinnendijk-Rank-Welterweight Figh
-	tWelterweight FightDillardvsBoutahar-Rank-\n• Lightweight FightLightweight
-	 FightOzcanvsAfakir-Rank-\n• Lightweight FightOzcanvsAfakir\n• Welterweigh
-	t FightWelterweight FightRegtervsKhalouta-Rank-\n• Welterweight FightRegte
-	rvsKhalouta\n• Light Heavyweight FightLight Heavyweight FightCenikvsAmine-
-	Rank-\n• Light Heavyweight FightCenikvsAmine\n• Featherweight FightFeather
-	weight FightBakkalivsHaddad-Rank-\n• Featherweight FightBakkalivsHaddad\n•
-	 Middleweight FightMiddleweight FightDiravsHammouti-Rank-\n• Middleweight 
-	FightDiravsHammouti\n• Featherweight FightFeatherweight FightBelarejvsMous
-	avi-Rank-\n• Featherweight FightBelarejvsMousavi\n• Middleweight FightMidd
-	leweight FightTouchassievsBinnendijk-Rank-\n• Middleweight FightTouchassie
-	vsBinnendijk\n• Welterweight FightWelterweight FightDillardvsBoutahar-Rank
-	-\n• Welterweight FightDillardvsBoutahar\n\nhttps://glorykickboxing.com/ev
-	ents/glory-rivals-6\n\nAccurate as of Nov 23\, 5:55 AM UTC
-LOCATION:Main Card 19:00 GMT
-DURATION:PT3H
-END:VEVENT
-BEGIN:VEVENT
-UID:https://glorykickboxing.com/events/glory-rivals-7
-SUMMARY:GLORY RIVALS 7 - GLORY Kickboxing
-DTSTAMP:20261123T055532Z
-DTSTART:20270116T170000Z
-DESCRIPTION:• Catchweight (160lbs/72.5kg) FightCatchweight (160lbs/72.5kg) 
-	FightSmailivsAfakir-Rank-\n• Catchweight (160lbs/72.5kg) FightCatchweight 
-	(160lbs/72.5kg) FightSmailivsAfakir-Rank-\n• Catchweight (160lbs/72.5kg) F
-	ightSmailivsAfakir\n\nhttps://glorykickboxing.com/events/glory-rivals-7\n\
-	nAccurate as of Nov 23\, 5:55 AM UTC
-LOCATION:Prelims 17:00 GMT
-DURATION:PT3H
-END:VEVENT
-BEGIN:VEVENT
-UID:https://glorykickboxing.com/events/glory-111
-SUMMARY:GLORY 111 - GLORY Kickboxing
-DTSTAMP:20261123T055532Z
-DTSTART:20270206T170000Z
-DESCRIPTION:• Featherweight FightFeatherweight FightDemirkapuvsPeposhi#2Ran
-	k#1Middleweight FightMiddleweight FightOzcaglayanvsAkingbade-Rank-Featherw
-	eight FightFeatherweight FightKaffavsHamami-Rank-\n• Featherweight FightFe
-	atherweight FightDemirkapuvsPeposhi#2Rank#1\n• Featherweight FightDemirkap
-	uvsPeposhi\n• Middleweight FightMiddleweight FightOzcaglayanvsAkingbade-Ra
-	nk-\n• Middleweight FightOzcaglayanvsAkingbade\n• Featherweight FightFeath
-	erweight FightKaffavsHamami-Rank-\n• Featherweight FightKaffavsHamami\n\nh
-	ttps://glorykickboxing.com/events/glory-111\n\nAccurate as of Nov 23\, 5:5
-	5 AM UTC
-LOCATION:Prelims 17:00 GMT
+UID:https://glorykickboxing.com/news/trade-on-kraken-unlock-glory
+SUMMARY:COLLISION 10 are already sold out
+DTSTAMP:20261123T195354Z
+DTSTART:20261208T000000Z
+DESCRIPTION:https://glorykickboxing.com/news/trade-on-kraken-unlock-glory\n
+	\nAccurate as of Nov 23\, 7:53 PM UTC
+LOCATION:GLORY COLLISION
 DURATION:PT3H
 END:VEVENT
 END:VCALENDAR
