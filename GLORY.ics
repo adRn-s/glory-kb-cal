@@ -8,10 +8,10 @@ X-PUBLISHED-TTL:PT1H
 BEGIN:VEVENT
 UID:https://glorykickboxing.com/news/trade-on-kraken-unlock-glory
 SUMMARY:COLLISION 10 are already sold out
-DTSTAMP:20261126T080155Z
+DTSTAMP:20261126T182101Z
 DTSTART:20261208T000000Z
 DESCRIPTION:https://glorykickboxing.com/news/trade-on-kraken-unlock-glory\n
-	\nAccurate as of Nov 26\, 8:01 AM UTC
+	\nAccurate as of Nov 26\, 6:21 PM UTC
 LOCATION:GLORY COLLISION
 DURATION:PT3H
 END:VEVENT
