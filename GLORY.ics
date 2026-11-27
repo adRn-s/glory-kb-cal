@@ -6,12 +6,22 @@ METHOD:PUBLISH
 X-WR-CALNAME:GLORY Kickboxing
 X-PUBLISHED-TTL:PT1H
 BEGIN:VEVENT
+UID:https://glorykickboxing.com/news/glory-rivals-6-weigh-in-results
+SUMMARY:GLORY Rivals 6: Weigh-In Results
+DTSTAMP:20261127T235527Z
+DTSTART:20261128T000000Z
+DESCRIPTION:https://glorykickboxing.com/news/glory-rivals-6-weigh-in-result
+	s\n\nAccurate as of Nov 27\, 11:55 PM UTC
+LOCATION:Den Bosch
+DURATION:PT3H
+END:VEVENT
+BEGIN:VEVENT
 UID:https://glorykickboxing.com/news/trade-on-kraken-unlock-glory
 SUMMARY:COLLISION 10 are already sold out
-DTSTAMP:20261127T133017Z
+DTSTAMP:20261127T235527Z
 DTSTART:20261208T000000Z
 DESCRIPTION:https://glorykickboxing.com/news/trade-on-kraken-unlock-glory\n
-	\nAccurate as of Nov 27\, 1:30 PM UTC
+	\nAccurate as of Nov 27\, 11:55 PM UTC
 LOCATION:GLORY COLLISION
 DURATION:PT3H
 END:VEVENT
